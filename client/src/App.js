@@ -7,8 +7,10 @@ import NavBar from './components/NavBar/NavBar';
 import Reg from './components/Reg/Reg';
 import Login from './components/Login/Login';
 import GamePage from './components/GamePage/GamePage'
+import Home from './components/Home/Home';
 
 import {getUser} from './redux/actions/userAC'
+
 
 function App() {
   const dispatch = useDispatch()
@@ -23,6 +25,7 @@ function App() {
     <div className="App">
         <NavBar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/game" element={<GamePage />} />
           <Route path="/auth/reg" element={<Reg />} />
           <Route path="/auth/login" element={<Login />} />
