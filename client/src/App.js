@@ -10,6 +10,7 @@ import GamePage from './components/GamePage/GamePage'
 import Home from './components/Home/Home';
 import Coloring from './components/Coloring/Coloring';
 import Card from './components/Card/Card';
+import AllWord from './components/AllWord/AllWord';
 
 import {getUser} from './redux/actions/userAC'
 
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/card' element={<Card />} />
+          <Route path='/word' element={<AllWord />} />
           <Route path='/coloring' element={<Coloring />} />
           <Route path="/card/:id" element={<GamePage />} />
           <Route path="/auth/reg" element={<Reg />} />

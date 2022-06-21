@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import OneCard from './OneCard/OneCard';
 import styles from './Card.module.css'
+import Container from '@mui/material/Container';
 
 export default function Card() {
 
@@ -12,10 +13,10 @@ export default function Card() {
       .then((data) => setArrCard(data.data))
   }, [])
 
-
   return (
-    <div className='container' >
+    <div className={styles.Home}>
+    <Container fixed className={styles.Container}>
       {arrCard?.map(el => <OneCard topic={el} key={el.id}/>)}
-      </div>
+      </Container> </div>
   )
 }
