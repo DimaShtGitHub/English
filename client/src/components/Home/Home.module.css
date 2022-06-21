@@ -1,0 +1,29 @@
+.Home {
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616436809_42-p-kartinki-dlya-fona-saita-52.jpg);
+  /*распределяем картинку на весь экран*/
+  background-position: center;
+  min-height: 100vh;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  margin-top: 0px;
+}
+
+img {
+  max-height: 30vh;
+  position: absolute;  
+  margin-top: 0px;
+}
+
+.PonyHome {
+  left: 80%;
+  bottom: 5%;
+}
+
+.PonyHome1 {
+  left: 3%;
+  bottom: 5%;
+}
+
+
+
