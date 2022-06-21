@@ -12,13 +12,14 @@ export default function CardOnHome() {
 
   const navigate = useNavigate(); 
   return (
-    <Container fixed>
-    <Card sx={{ maxWidth: '40%' }} className={styles.Card} onClick={()=> navigate('/coloring', {replace: true})}>
-      <CardActionArea>
+    <>
+    <Container fixed className={styles.Container}>
+    <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/coloring', {replace: true})}>
+      <CardActionArea >
         <CardMedia
-          // component="img"
-         maxWidth='100px'
-          image="/img/Card1.png"
+          component="img"
+          maxWidth='100px'
+          // image="/img/Card1.png"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -31,12 +32,12 @@ export default function CardOnHome() {
       </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: '200px', minHeight: '200px' }} onClick={()=> navigate('/card', {replace: true})}>
+      <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/card', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
          maxWidth='100px'
-          image="/img/Card1.png"
+          // image="/img/Card1.png"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -49,6 +50,6 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
     </Container>
-
+    </>
   )
 }
