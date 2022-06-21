@@ -1,3 +1,10 @@
 .Card {
-  margin: 10px;
+  /* margin-top: 10px; */
+  margin-top: 15px;
+}
+
+.Container {
+  display: flex !important;
+  justify-content: space-around !important;
+  /* flex-wrap: wrap !important; */
 }

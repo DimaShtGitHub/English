@@ -62,7 +62,7 @@ export default function ButtonAppBar() {
             )}
           </PopupState>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            EnglishYoung
+            <Link className="logo-link" to="/">EnglishYoung</Link>
           </Typography>
           <Button onClick={regHandler} color="inherit">{user.name ? user.name : 'Регистрация'}</Button>
           <Button onClick={logHandler} color="inherit">{user.name ? 'Выйти' : 'Войти'}</Button>
