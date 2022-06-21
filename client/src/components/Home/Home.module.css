@@ -10,9 +10,9 @@
 }
 
 img {
-  max-height: 30vh;
-  position: absolute;  
-  margin-top: 0px;
+  max-height: 30vh !important;;
+  position: absolute !important;;  
+  margin-top: 0px !important;
 }
 
 .PonyHome {

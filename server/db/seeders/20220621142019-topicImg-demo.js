@@ -2,33 +2,39 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Topics', [{
-      title: 'Food',
+    await queryInterface.bulkInsert('TopicImgs', [{
+      topicId: 1,
+      img: '/img/Cheese.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      title: 'Animals',
+      topicId: 2,
+      img: '/img/Fox.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      title: 'Number',
+      topicId: 3,
+      img: '/img/One.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      title: 'Fruits',
+      topicId: 4,
+      img: '/img/Orange.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      title: 'Vegetables',
+      topicId: 5,
+      img: '/img/Cucumber.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      title: 'Transport',
+      topicId: 6,
+      img: '/img/Train.png',
       createdAt: new Date(),
       updatedAt: new Date()
     }
@@ -36,6 +42,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Topics', null, {});
+    await queryInterface.bulkDelete('TopicImgs', null, {});
   }
 };
