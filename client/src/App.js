@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {/*useSelector,*/ useDispatch} from 'react-redux';
 
 import NavBar from './components/NavBar/NavBar';
 import Reg from './components/Reg/Reg';
