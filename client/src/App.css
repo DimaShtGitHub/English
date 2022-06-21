@@ -2,6 +2,16 @@
   text-align: center;
 }
 
-.nav-link {
+/* .nav-link {
   margin: 7px;
+} */
+
+.menu-link {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-bar {
+  background-color: #96d94a;
+  border-radius: 7px;
 }
