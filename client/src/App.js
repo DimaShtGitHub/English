@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+
+import NavBar from './components/NavBar/NavBar';
+import Reg from './components/Reg/Reg';
+import Login from './components/Login/Login';
+
+import {getUser} from './redux/actions/userAC'
 
 function App() {
+  const dispatch = useDispatch()
+  // const user = useSelector((state)=>state.user)
+
+
+  useEffect(() => {
+    dispatch(getUser())
+   }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <NavBar />
+        <Routes>
+          <Route path="/auth/reg" element={<Reg />} />
+          <Route path="/auth/login" element={<Login />} />
+        </Routes>
     </div>
   );
 }
