@@ -54,9 +54,9 @@ export default function ButtonAppBar() {
                   Игра
                 </Button>
                 <Menu {...bindMenu(popupState)}>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/">Карточки</Link></MenuItem>
-                  <MenuItem onClick={popupState.close}>Раскраска</MenuItem>
-                  <MenuItem onClick={popupState.close}>Новые слова</MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring">Coloring</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Card</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}>Mult</MenuItem>
                 </Menu>
               </React.Fragment>
             )}
