@@ -54,7 +54,7 @@ export default function ButtonAppBar() {
                   Игра
                 </Button>
                 <Menu {...bindMenu(popupState)}>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/">Карточки</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/game">Карточки</Link></MenuItem>
                   <MenuItem onClick={popupState.close}>Раскраска</MenuItem>
                   <MenuItem onClick={popupState.close}>Новые слова</MenuItem>
                 </Menu>
@@ -62,7 +62,7 @@ export default function ButtonAppBar() {
             )}
           </PopupState>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            EnglishYoung
+            <Link className="logo-link" to="/">EnglishYoung</Link>
           </Typography>
           <Button onClick={regHandler} color="inherit">{user.name ? user.name : 'Регистрация'}</Button>
           <Button onClick={logHandler} color="inherit">{user.name ? 'Выйти' : 'Войти'}</Button>
