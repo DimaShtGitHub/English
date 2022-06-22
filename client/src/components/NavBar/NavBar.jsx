@@ -13,8 +13,6 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 
 
-
-
 export default function ButtonAppBar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
@@ -56,7 +54,7 @@ export default function ButtonAppBar() {
                 <Menu {...bindMenu(popupState)}>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring">Coloring</Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Card</Link></MenuItem>
-                  <MenuItem onClick={popupState.close}>Mult</MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/word">Word</Link></MenuItem>
                 </Menu>
               </React.Fragment>
             )}
