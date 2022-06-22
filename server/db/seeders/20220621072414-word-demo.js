@@ -2,8 +2,8 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Words', [{
-      wordEnglish: 'Orange',
+    await queryInterface.bulkInsert('Words', [
+      {wordEnglish: 'Orange',
       img: '/img/Orange.png',
       wordRussian: 'Апельсин',
       createdAt: new Date(),
@@ -219,6 +219,447 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     }, 
+    {
+      wordEnglish: 'Pineapple',
+      img: '/img/Pineapple.png',
+      wordRussian: 'Ананас',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Watermelon',
+      img: '/img/Watermelon.png',
+      wordRussian: 'Арбуз',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Bus',
+      img: '/img/Bus.png',
+      wordRussian: 'Автобус',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Car',
+      img: '/img/Car.png',
+      wordRussian: 'Машина',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Train',
+      img: '/img/Train.png',
+      wordRussian: 'Поезд',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Tomato',
+      img: '/img/Tomato.png',
+      wordRussian: 'Помидор',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Parrot',
+      img: '/img/Parrot.png',
+      wordRussian: 'Попугай',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Cow',
+      img: '/img/Cow.png',
+      wordRussian: 'Корова',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Tiger',
+      img: '/img/Tiger.png',
+      wordRussian: 'Тигр',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Tree',
+      img: '/img/Tree.png',
+      wordRussian: 'Дерево',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Strawberry',
+      img: '/img/Strawberry.png',
+      wordRussian: 'Клубника',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Duck',
+      img: '/img/Duck.png',
+      wordRussian: 'Утка',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Ball',
+      img: '/img/Ball.png',
+      wordRussian: 'Мяч',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Girl',
+      img: '/img/Girl.png',
+      wordRussian: 'Девочка',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Melon',
+      img: '/img/Melon.png',
+      wordRussian: 'Дыня',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'One',
+      img: '/img/One.png',
+      wordRussian: 'Один',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Two',
+      img: '/img/Two.png',
+      wordRussian: 'Два',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Three',
+      img: '/img/Three.png',
+      wordRussian: 'Три',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Four',
+      img: '/img/Four.png',
+      wordRussian: 'Четыре',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Five',
+      img: '/img/Five.png',
+      wordRussian: 'Пять',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Six',
+      img: '/img/Six.png',
+      wordRussian: 'Шесть',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Bread',
+      img: '/img/Bread.png',
+      wordRussian: 'Хлеб',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Seven',
+      img: '/img/Seven.png',
+      wordRussian: 'Семь',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Eight',
+      img: '/img/Eight.png',
+      wordRussian: 'Восемь',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Nine',
+      img: '/img/Nine.png',
+      wordRussian: 'Девять',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Zero',
+      img: '/img/Zero.png',
+      wordRussian: 'Ноль',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Sugar',
+      img: '/img/Sugar.png',
+      wordRussian: 'Сахар',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Salt',
+      img: '/img/Salt.png',
+      wordRussian: 'Соль',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Coffee',
+      img: '/img/Coffee.png',
+      wordRussian: 'Кофе',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Boat',
+      img: '/img/Boat.png',
+      wordRussian: 'Лодка',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Bed',
+      img: '/img/Bed.png',
+      wordRussian: 'Кровать',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Frog',
+      img: '/img/Frog.png',
+      wordRussian: 'Лягушка',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Table',
+      img: '/img/Table.png',
+      wordRussian: 'Стол',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Airplane',
+      img: '/img/Airplane.png',
+      wordRussian: 'Самолет',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Blue',
+      img: '/img/Blue.png',
+      wordRussian: 'Синий',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Computer',
+      img: '/img/Computer.png',
+      wordRussian: 'Копмьютер',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Water',
+      img: '/img/Water.png',
+      wordRussian: 'Вода',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Grape',
+      img: '/img/Grape.png',
+      wordRussian: 'Виноград',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Peach',
+      img: '/img/Peach.png',
+      wordRussian: 'Персик',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Pear',
+      img: '/img/Pear.png',
+      wordRussian: 'Груша',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Pig',
+      img: '/img/Pig.png',
+      wordRussian: 'Поросёнок',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Potato',
+      img: '/img/Potato.png',
+      wordRussian: 'Картофель',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Onion',
+      img: '/img/Onion.png',
+      wordRussian: 'Лук',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Lion',
+      img: '/img/Lion.png',
+      wordRussian: 'Лев',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Horse',
+      img: '/img/Horse.png',
+      wordRussian: 'Лошадь',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Turtle',
+      img: '/img/Turtle.png',
+      wordRussian: 'Черепаха',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Sheep',
+      img: '/img/Sheep.png',
+      wordRussian: 'Овца',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Juice',
+      img: '/img/Juice.png',
+      wordRussian: 'Сок',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Crisps',
+      img: '/img/Crisps.png',
+      wordRussian: 'Чипсы',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Cookie',
+      img: '/img/Cookie.png',
+      wordRussian: 'Печенье',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Ship',
+      img: '/img/Ship.png',
+      wordRussian: 'Корабль',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Snowman',
+      img: '/img/Snowman.png',
+      wordRussian: 'Снеговик',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Mirror',
+      img: '/img/Mirror.png',
+      wordRussian: 'Зеркало',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Pepper',
+      img: '/img/Pepper.png',
+      wordRussian: 'Перец',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Green',
+      img: '/img/Green.png',
+      wordRussian: 'Зеленый',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Guitar',
+      img: '/img/Guitar.png',
+      wordRussian: 'Гитара',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Bird',
+      img: '/img/Bird.png',
+      wordRussian: 'Птица',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      wordEnglish: 'Zebra',
+      img: '/img/Zebra.png',
+      wordRussian: 'Зебра',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Sofa',
+      img: '/img/Sofa.png',
+      wordRussian: 'Диван',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Clock',
+      img: '/img/Clock.png',
+      wordRussian: 'Часы',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Lamp',
+      img: '/img/Lamp.png',
+      wordRussian: 'Лампа',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Bear',
+      img: '/img/Bear.png',
+      wordRussian: 'Медведь',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      wordEnglish: 'Mouse',
+      img: '/img/Mouse.png',
+      wordRussian: 'Мышь',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
   ])
   },
 

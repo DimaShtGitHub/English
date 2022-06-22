@@ -13,7 +13,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      title: 'Merry Christmas',
+      title: 'Number',
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -24,6 +24,11 @@ module.exports = {
     },
     {
       title: 'Vegetables',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      title: 'Transport',
       createdAt: new Date(),
       updatedAt: new Date()
     }

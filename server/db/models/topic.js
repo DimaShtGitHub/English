@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsToMany(models.Word, {through: 'GameCards', foreignKey: 'topicId'})
+      this.belongsToMany(models.Word, {through: 'GameCards', foreignKey: 'topicId'}),
+      this.hasOne(models.TopicImg,  {foreignKey: 'topicId' }),
+      this.hasMany(models.InsertLetter, { foreignKey: 'topicId' })
     }
   }
   Topic.init({

@@ -1,0 +1,14 @@
+.Card {
+  margin-top: 15px;
+  opacity: .5;
+  color: black !important;
+}
+.Card:hover {
+  opacity: 1.0;
+}  
+
+.Container {
+  display: flex !important;
+  justify-content: space-around !important;
+  flex-wrap: wrap !important;
+}
