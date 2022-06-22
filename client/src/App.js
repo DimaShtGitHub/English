@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import GamePage from './components/GamePage/GamePage'
 
 import {getUser} from './redux/actions/userAC'
+import TestGame from './components/TestGame/TestGame';
 
 function App() {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ function App() {
           <Route path="/game" element={<GamePage />} />
           <Route path="/auth/reg" element={<Reg />} />
           <Route path="/auth/login" element={<Login />} />
+          <Route path='/test' element={<TestGame/>} />
         </Routes>
     </div>
   );

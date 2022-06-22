@@ -12,6 +12,7 @@ const cors = require('cors');
 const app = express();
 
 const authRout = require('./routes/authRout');
+const wordsRouter = require('./routes/words');
 
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 
 app.use('/auth', authRout);
+app.use('/words', wordsRouter);
 
 app.listen(process.env.PORT ?? 3001, () => {
   console.log('Server started at port', process.env.PORT);
