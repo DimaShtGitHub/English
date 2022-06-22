@@ -53,8 +53,9 @@ export default function ButtonAppBar() {
                 </Button>
                 <Menu {...bindMenu(popupState)}>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring">Coloring</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Words</Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Card</Link></MenuItem>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/word">Word</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/allword">Word</Link></MenuItem>
                 </Menu>
               </React.Fragment>
             )}

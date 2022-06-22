@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/card' element={<Card />} />
-          <Route path='/word' element={<AllWord />} />
+          <Route path='/allword' element={<AllWord />} />
           <Route path='/coloring' element={<Coloring />} />
           <Route path="/words" element={<WordsPage />} />
           <Route path="/words/:id" element={<OneWords />} />
