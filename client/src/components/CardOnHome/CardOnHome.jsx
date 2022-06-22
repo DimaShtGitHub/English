@@ -49,6 +49,25 @@ export default function CardOnHome() {
         </CardContent>
       </CardActionArea>
     </Card>
+
+      <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/words', {replace: true})}>
+      <CardActionArea >
+        <CardMedia
+          component="img"
+         maxWidth='100px'
+          // image="/img/Card1.png"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Words
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           В этой игре нужно будет подставлять буквы в слова с иллюстрациями
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+
     </Container>
     </>
   )
