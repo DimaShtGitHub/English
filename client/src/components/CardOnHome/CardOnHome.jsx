@@ -68,6 +68,24 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
 
+<Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/allword', {replace: true})}>
+      <CardActionArea >
+        <CardMedia
+          component="img"
+          maxWidth='100px'
+          // image="/img/Card1.png"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            All Word
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           Тут можно посмотреть все слова
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      </Card>
+
     </Container>
     </>
   )

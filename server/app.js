@@ -14,6 +14,7 @@ const app = express();
 const authRout = require('./routes/authRout');
 const topicRout = require('./routes/topicRout')
 const allWordRout = require('./routes/allWordRout')
+const letterRout = require('./routes/letterRout')
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(logger('dev'));
@@ -56,7 +57,8 @@ app.use((req, res, next) => {
 
 app.use('/auth', authRout);
 app.use('/topic', topicRout);
-app.use('/word', allWordRout)
+app.use('/word', allWordRout);
+app.use('/letter', letterRout);
 
 app.listen(process.env.PORT ?? 3001, () => {
   console.log('Server started at port', process.env.PORT);
