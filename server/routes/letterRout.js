@@ -4,9 +4,13 @@ const { Topic, TopicImg, Word, InsertLetter } = require('../db/models')
 
 router.get('/all', async (req, res) => {
 
-  const allWord = await InsertLetter.findAll({include: {model: Topic, model: Word}, raw: true})
-  res.json(allWord)
-  })
+try {
+  const allWord = await InsertLetter.findAll({include: [{model: Word}, {model: Topic}], raw: true})
+  res.json(allWord)  
+} catch (error) {
+  console.log(error)
+}
+})
 
   
 module.exports = router;
