@@ -10,11 +10,22 @@ export default function TestGame() {
   const [fourW, setFourW] = useState([])
   const [count, setCount] = useState(0)
   const [image, setImage] = useState([])
-  const [trueW, setTrueW] = useState([])
+  const [trueW, setTrueW] = useState({title: '', id: 0})
   const [points, setPoint] = useState([0])
   const [lengthGame, setLengthGame] = useState([])
+  const [result, setResult] = useState([])
+  const [stat, setStat] = useState({arrTrue: [], arrFalse: []})
   const {id} = useParams()
   
+  // console.log('fourW', fourW);
+  // console.log('count', count);
+  // console.log('image', image);
+  // console.log('trueW', trueW);
+  // console.log('points', points);
+  // console.log('result', result);
+  // console.log('stat', stat);
+
+
   useEffect(() => {
     axios.get(`http://localhost:3001/words/${id}`)
       .then((data) => {
@@ -28,9 +39,8 @@ export default function TestGame() {
         arreyName.push(trueWord)
         setFourW(shufle(arreyName.slice(-4)))
 
-
         setImage(trueWord['Words.img'])
-        setTrueW(trueWord['Words.wordEnglish'])
+        setTrueW({title: trueWord['Words.wordEnglish'], id: trueWord['Words.id']})
   
       }) 
     }, [count])
@@ -51,16 +61,36 @@ export default function TestGame() {
       return barr
     }
     
+    function timerResult() {
+      setTimeout(() => {
+        setResult('')
+        
+      }, 1000)
+    }
+
+    function timerWindow() {
+      setTimeout(() => setCount((prev) => prev + 1), 1000)
+    }
   const click = (event) => {
     if (count < lengthGame) {
-      setCount((prev) => prev + 1)
+      timerWindow()
 
-      if(event.target.value === trueW){
+      if(event.target.value === trueW.title){
+        setResult('молодец')
+        
+        setStat((prev) => ({...prev, arrTrue: [...stat.arrTrue, event.target.id]}))
+        timerResult() 
         setPoint((prev) => Number(prev) + 1)
-      } 
+        console.log(stat);
+      } else {
+        setResult('не правильно')
+        setStat((prev) => ({...prev, arrFalse: [...stat.arrFalse, trueW.id]}))
+
+        timerResult() 
+      }
     } 
   }
-
+  
   return (
     <div className='test_game_container'>
       {count < lengthGame  ?   
@@ -69,10 +99,10 @@ export default function TestGame() {
         <div>
         <img className={'picture'} src={image} alt='pic'/>
         </div>
-          
+        <h3>{result}</h3>
         <Box>
           <ButtonGroup>
-            {fourW?.map((el, index) => <Button key={index} value={el['Words.wordEnglish']} onClick={(event) => click(event)}>{el['Words.wordEnglish']}</Button>)}
+            {fourW?.map((el, index) => <Button key={index} id={el['Words.id']} value={el['Words.wordEnglish']} onClick={(event) => click(event)}>{el['Words.wordEnglish']}</Button>)}
           </ButtonGroup>
         </Box>
       </div>
