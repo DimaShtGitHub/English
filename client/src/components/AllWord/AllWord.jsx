@@ -21,6 +21,11 @@ export default function AllWord() {
       .then((data) => setAllWord(data.data))
   }, [])
 
+  useEffect(()=> {
+    axios.get('http://localhost:3001/statistic', {withCredentials: true})
+    .then((data) => console.log(data.data))
+}, [])
+
   return (
     <>
       <TableContainer component={Paper}>

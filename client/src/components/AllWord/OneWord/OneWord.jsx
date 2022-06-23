@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './OneWord.module.css'
 
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';

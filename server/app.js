@@ -13,10 +13,10 @@ const app = express();
 
 const authRout = require('./routes/authRout');
 const wordsRouter = require('./routes/words');
-
 const topicRout = require('./routes/topicRout')
 const allWordRout = require('./routes/allWordRout')
 const letterRout = require('./routes/letterRout')
+const statisticRout = require('./routes/statisticRout')
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(logger('dev'));
@@ -62,6 +62,8 @@ app.use('/words', wordsRouter);
 app.use('/topic', topicRout);
 app.use('/word', allWordRout);
 app.use('/letter', letterRout);
+app.use('/statistic', statisticRout);
+
 
 app.listen(process.env.PORT ?? 3001, () => {
   console.log('Server started at port', process.env.PORT);

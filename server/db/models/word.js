@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsToMany(models.Topic, {through: 'GameCards', foreignKey: 'wordId'}),
-      this.hasMany(models.InsertLetter,  { foreignKey: 'wordId'})
+      this.hasMany(models.InsertLetter,  { foreignKey: 'wordId'}),
+      this.hasOne(models.Statistic,  { foreignKey: 'wordId'})
     }
   }
   Word.init({
