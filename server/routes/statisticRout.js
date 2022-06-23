@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const {  Word, Statistic } = require('../db/models')
 
-router.get('/', async (req, res) => {
-  truearr = req.body.arrtrue
-  falsearr = req.body.arrfalse
+router.post('/', async (req, res) => {
   try {
-  id = req.session.user.id
+  const truearr = req.body.stat.arrtrue
+  const falsearr = req.body.stat.arrfalse
+  const id = req.session?.user?.id
   const allWordId = await Statistic.findAll({where: {userId: id}, raw: true})
   //создаем массив только wordId [3, 5, 8]
   const wordId = allWordId.map(el => el.wordId)
 
   //проходим по массиву и смотрим есть ли в нем значения из массива false
-  for(i = 0; i < falsearr.length; i++) {
+  for(i = 0; i < falsearr?.length; i++) {
     if(wordId.indexOf(falsearr[i]) === -1) {
       await Statistic.create({userId: id, wordId: falsearr[i], count: 1})
     } else {
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
   }
 
    //проходим по массиву и смотрим есть ли в нем значения из массива true
-   for(i = 0; i < truearr.length; i++) {
+   for(i = 0; i < truearr?.length; i++) {
     if(wordId.indexOf(truearr[i]) !== -1) {
       let oneTrueWord = await Statistic.findOne({where: {userId: id, wordId: truearr[i]}})
       const count = oneTrueWord.count 

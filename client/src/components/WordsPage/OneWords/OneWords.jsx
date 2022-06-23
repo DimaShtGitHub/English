@@ -17,6 +17,8 @@ export default function OneWords() {
   const [words, setWords] = useState([])
   const [checkAnswer, setCheckAnswer] = useState(0)
   const [trueAnswers, setTrueAnswers] = useState(0)
+  const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
+  const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
 
   useEffect(() => {
     axios.get('http://localhost:3001/letter/all')
@@ -27,26 +29,34 @@ export default function OneWords() {
   }, [])
 
 
+  
+  
+  
+  
   const pushHandler = (event) => {
     // console.log(event.target.value)
     // console.log(words[count])
     // console.log(words[0])
     // console.log(words[count].text.split('').map(el => el.toUpperCase()).join(''))
     // console.log(words[count].letter)
-    // console.log(words[count]['Word.img'])
     if (event.target.value === words[count]?.letter) {
-      console.log('правильный ответ')
       setCheckAnswer(0)
       setCount(count + 1)
       setTrueAnswers(trueAnswers + 1)
+      setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, words[count]['Word.id']]}))
+      setStatWord((prev) => ({...prev, arrtrue: [...statWord.arrtrue, words[count]['Word.wordEnglish']]}))
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
-      console.log('еще одна попытка')
     } else {
-      console.log('провалил все попытки')
       setCheckAnswer(0)
+      setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, words[count]['Word.id']]}))
+      setStatWord((prev) => ({...prev, arrfalse: [...statWord.arrfalse, words[count]['Word.wordEnglish']]}))
       setCount(count + 1)
     }
+  }
+  
+  if (count === words.length) {
+    axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
   return (
@@ -62,7 +72,11 @@ export default function OneWords() {
         })}
       </ButtonGroup>
       </>)
-       : (count ? <h3>Молодец, правильных ответов: {trueAnswers}</h3> : null)}
+       : (count ? 
+        <><h3>Молодец, правильных ответов: {trueAnswers}</h3>
+        <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
+        <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
+        </> : null)}
     </>
   )
 }
