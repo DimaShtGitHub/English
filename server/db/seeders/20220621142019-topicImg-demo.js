@@ -37,6 +37,12 @@ module.exports = {
       img: '/img/Train.png',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      img: '/img/Home.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ])
   },

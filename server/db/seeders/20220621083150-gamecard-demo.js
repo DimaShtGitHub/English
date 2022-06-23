@@ -188,6 +188,185 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },
+    {
+      topicId: 2,
+      wordId: 78,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 77,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 93,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 94,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 63,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 43,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 24,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 2,
+      wordId: 25,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 3,
+      wordId: 50,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 3,
+      wordId: 51,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 3,
+      wordId: 52,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 3,
+      wordId: 54,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 3,
+      wordId: 56,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      topicId: 4,
+      wordId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 4,
+      wordId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 4,
+      wordId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 4,
+      wordId: 11,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 4,
+      wordId: 19,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 6,
+      wordId: 82,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 6,
+      wordId: 61,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 6,
+      wordId: 26,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 5,
+      wordId: 37,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 16,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 62,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      topicId: 7,
+      wordId: 64,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 67,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 84,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 90,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 91,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      topicId: 7,
+      wordId: 92,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
   ])
   },
 
@@ -195,3 +374,4 @@ module.exports = {
     await queryInterface.bulkDelete('GameCards', null, {});
   }
 };
+
