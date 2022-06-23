@@ -31,6 +31,11 @@ module.exports = {
       title: 'Transport',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      title: 'Home',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ])
   },

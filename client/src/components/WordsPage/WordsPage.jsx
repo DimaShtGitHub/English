@@ -1,38 +1,26 @@
-import React from 'react'
-import styles from './WordsPage.module.css'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import OneCardWord from './OneCardWord/OneCardWord';
 import Container from '@mui/material/Container';
-import { useNavigate } from 'react-router-dom' 
 
 export default function WordsPage() {
 
-  const navigate = useNavigate(); 
+  const [arrCard, setArrCard] = useState([]);
+
+  useEffect(()=> {
+    axios.get('http://localhost:3001/topic/words')
+    .then((data) => setArrCard(data.data))
+}, [])
+
   return (
     <>
-    <Container fixed className={styles.Container}>
-    <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate(`/words/${2}`, {replace: true})}>
-      <CardActionArea >
-        <CardMedia
-          component="img"
-          maxWidth='100px'
-          // image="/img/Card1.png"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Animals
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            подставь верные буквы в названия животных
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      </Card>
-
-    </Container>
+    {arrCard.length > 0 ? (
+        <div>
+        <Container fixed >
+        {arrCard?.map(el => <OneCardWord  topic={el} key={el.id}/>)}
+          </Container> </div>
+    ):(<div>nooo</div>)}
+    
     </>
   )
 }
