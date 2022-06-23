@@ -12,6 +12,8 @@ const cors = require('cors');
 const app = express();
 
 const authRout = require('./routes/authRout');
+const wordsRouter = require('./routes/words');
+
 const topicRout = require('./routes/topicRout')
 const allWordRout = require('./routes/allWordRout')
 const letterRout = require('./routes/letterRout')
@@ -56,6 +58,7 @@ app.use((req, res, next) => {
 
 
 app.use('/auth', authRout);
+app.use('/words', wordsRouter);
 app.use('/topic', topicRout);
 app.use('/word', allWordRout);
 app.use('/letter', letterRout);
