@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Topic, { foreignKey: 'topicId' })
+      this.belongsTo(models.Topic, { foreignKey: 'topicId' }),
+      this.belongsTo(models.Word, { foreignKey: 'wordId' })
     }
   }
   InsertLetter.init({

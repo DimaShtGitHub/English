@@ -14,7 +14,7 @@ export default function WordsPage() {
   return (
     <>
     <Container fixed className={styles.Container}>
-    <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate(`/words/${1}`, {replace: true})}>
+    <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate(`/words/${2}`, {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"

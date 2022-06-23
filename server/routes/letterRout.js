@@ -4,7 +4,7 @@ const { Topic, TopicImg, Word, InsertLetter } = require('../db/models')
 
 router.get('/all', async (req, res) => {
 
-  const allWord = await InsertLetter.findAll({include: {model: Topic, model: Word}, raw: true})
+  const allWord = await InsertLetter.findAll({include: [{model: Word}, {model: Topic}], raw: true})
   res.json(allWord)
   })
 
