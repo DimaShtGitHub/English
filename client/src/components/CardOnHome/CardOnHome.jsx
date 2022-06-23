@@ -68,7 +68,7 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
 
-<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/allword', {replace: true})}>
+<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/dictionary', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
