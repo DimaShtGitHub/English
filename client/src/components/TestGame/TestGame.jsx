@@ -27,22 +27,29 @@ export default function TestGame() {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/words/${id}`)
-      .then((data) => {
-        setLengthGame(data.data.words.length)
-        
-        let trueWord = data.data.words[count]
-        
-        let fourWord = data.data.words.filter((el) => el['Words.wordEnglish'] !== trueWord['Words.wordEnglish'])
-
-        const arreyName = shufle(fourWord)
-        arreyName.push(trueWord)
-        setFourW(shufle(arreyName.slice(-4)))
-
-        setImage(trueWord['Words.img'])
-        setTrueW({title: trueWord['Words.wordEnglish'], id: trueWord['Words.id']})
+    if(id === 'random'){
+      axios.get(`http://localhost:3001/words/random`)
+      .then(data => {
+        setLengthGame(data.data.length)
+        })
+    } else {
+      axios.get(`http://localhost:3001/words/${id}`)
+        .then((data) => {
+          setLengthGame(data.data.words.length)
+          
+          let trueWord = data.data.words[count]
+          
+          let fourWord = data.data.words.filter((el) => el['Words.wordEnglish'] !== trueWord['Words.wordEnglish'])
   
-      }) 
+          const arreyName = shufle(fourWord)
+          arreyName.push(trueWord)
+          setFourW(shufle(arreyName.slice(-4)))
+  
+          setImage(trueWord['Words.img'])
+          setTrueW({title: trueWord['Words.wordEnglish'], id: trueWord['Words.id']})
+    
+        }) 
+    }
     }, [count])
     
   function shufle(arr) {
