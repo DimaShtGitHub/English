@@ -14,6 +14,7 @@ res.json(allTopic)
 router.get('/words', async (req, res) => {
   try {
   const allTopic = await InsertLetter.findAll({ attributes: ['topicId'], raw: true})
+  
   function uArray() {
     const arrTotal = [];
     for (var i=0; i < allTopic.length; i++)
