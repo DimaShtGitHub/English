@@ -15,14 +15,14 @@ export default function OneWord({ word }) {
 
   return (
     <>
-             <TableRow
-              key={word.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell   component="th" scope="row" align="center">
-               <button onClick={talk}> {word.wordEnglish}</button>
-              </TableCell>
-              <TableCell align="center">{word.wordRussian}</TableCell>
-            </TableRow>    
-</>
+      <TableRow
+      key={word.id}
+      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+        <TableCell   component="th" scope="row" align="center">
+          <button onClick={talk}> {word.wordEnglish}</button>
+        </TableCell>
+        <TableCell align="center">{word.wordRussian}</TableCell>
+      </TableRow>    
+    </>
   )
 }

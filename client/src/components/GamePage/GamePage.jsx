@@ -1,44 +1,77 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
-
-const rounds = [
-  ['cat', 'dog', 'pig', 'mouse'],
-  ['pig', 'mouse', 'cat', 'dog'],
-  ['dog', 'pig', 'mouse', 'cat'],
-  ['cat', 'pig', 'mouse', 'dog']]
-
-const images = [
-  'data:image/jpeg;base64,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',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQWx3z47iRlssS4xH7136p8ngWzkpvwaJuQ&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv0lF8Gtq08stGrZwjbOTHUj933dzv16zHdw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHYP81eB-VuOSEZwO8-dHtTiQsOs-OS4OmDA&usqp=CAU'
-]
-
-// const answer = 'cat'
+import axios from 'axios';
+import './style.css'
 
 export default function GamePage() {
+  const [names, setName] = useState([])
+  const [images, setImg] = useState([])
+  const [allNum, setAllNum] = useState([])
+  const [round, setRound] = useState([])
+  const [btnNames, setBtnNames] = useState([])
 
-  const [num, setNum] = useState([0])
+  useEffect(() => {
+    axios.get('http://localhost:3002/words', {level: 1})
+    .then((data) => {  
+      console.log(data.data);
+      const allImg = data.data.words.map((el) => el['Words.img'])
+      const allWords = data.data.allWords.map((el) => el.wordEnglish)
+      setImg(allImg)
+      setAllNum(allImg.length - 1)
+      setName(allWords)
+
+      const allParam = data.data.words.map((el) => el)
+      setRound(allParam)      
+    })
+
+    const variants = round.map((arr) => [arr['Words.wordEnglish']])
+    
+    for (let i = 0; i < variants.length; i++) {
+      console.log(variants);
+      for (let j = 0; j < 3; j++) {
+        const random = Math.floor(Math.random() * names.length - 1) + 1
+        if(names[random] === variants[i][0]) {
+          variants[i].push(names[random + 1])
+        } else {
+          variants[i].push(names[random])
+        }
+        setBtnNames(variants)
+        console.log('btnNames', btnNames)
+      }
+    }
+
+  }, [])
+
+  // useEffect(() => {
+
+  // }, [btnNames])
+  // console.log(names);
+
+  const [level, setLevel] = useState([0])
 
   const numClick = () => {
-    console.log(num);
-    // if(num === 4) {
-    //   setNum((prev) => [] )
-    // } else {
-      setNum((prev) => [Number(...prev) + 1])
-    // }
+    // console.log(num);
+    if(level[0] === allNum) {
+      setLevel([0])
+    } else {
+      setLevel((prev) => [Number(...prev) + 1])
+    }
   }
+  console.log(level);
 
-  // console.log(num);
+  // console.log('var', variants);
+  // console.log(images[0]);
 
   return (
-    <div>
-      <img src={images[num]} alt='cats' />
+    <div className='gamePageContainer'>
+      <div className="img">
+        <img className='picture' src={images[level]} alt='cats' />
+      </div>
       <Box >
         <ButtonGroup>
-          {rounds[1].map((variant) => <Button onClick={() => numClick()} key={Math.floor(Math.random()* 500) }>{variant}</Button> )}
+          {btnNames[level]?.map((vari) => <Button onClick={() => numClick()} key={Math.floor(Math.random()* 500) }>{vari}</Button> )}
         </ButtonGroup>
       </Box>
       

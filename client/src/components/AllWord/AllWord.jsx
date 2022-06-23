@@ -23,21 +23,20 @@ export default function AllWord() {
 
   return (
     <>
-  <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Английский язык</TableCell>
-            <TableCell align="center">Русский язык</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-           {allWord?.map(el => <OneWord word={el} key={el.id}/>)}  
-        </TableBody>
-      </Table>
-    </TableContainer>
-
-  </>   
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Английский язык</TableCell>
+              <TableCell align="center">Русский язык</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {allWord?.map(el => <OneWord word={el} key={el.id}/>)}  
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>   
   )
 }
 
