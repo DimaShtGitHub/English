@@ -57,8 +57,8 @@ export default function OneWords() {
   }
 
   const talk = (str) => {
-    var synth = window.speechSynthesis;
-    var utterThis = new SpeechSynthesisUtterance(str);
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance(str);
      synth.speak(utterThis);
 }
   return (
@@ -77,12 +77,10 @@ export default function OneWords() {
        : (count ? 
         <><h3>Молодец, правильных ответов: {trueAnswers}</h3>
         <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
-           let string = el
-          return <Button onClick={() => talk(string)} value={el} key={i}>{el}</Button>
+          return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
         })}</div>
         <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
-          let string = el
-          return <Button value={el} onClick={() => talk(string)} key={i}>{el}</Button>
+          return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
         })}</div>
         </> : null)}
     </>
