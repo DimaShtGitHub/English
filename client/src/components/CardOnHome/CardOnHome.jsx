@@ -14,11 +14,11 @@ export default function CardOnHome() {
   return (
     <>
     <Container fixed className={styles.Container}>
-    <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/coloring', {replace: true})}>
+    <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/coloring', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
-          maxWidth='100px'
+          width='100px'
           // image="/img/Card1.png"
         />
         <CardContent>
@@ -32,11 +32,11 @@ export default function CardOnHome() {
       </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/card', {replace: true})}>
+      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/card', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
-         maxWidth='100px'
+          width='100px'
           // image="/img/Card1.png"
         />
         <CardContent>
@@ -50,11 +50,11 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
 
-      <Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/words', {replace: true})}>
+      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/words', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
-         maxWidth='100px'
+          width='100px'
           // image="/img/Card1.png"
         />
         <CardContent>
@@ -68,11 +68,11 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
 
-<Card sx={{ maxWidth: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/allword', {replace: true})}>
+<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/allword', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
-          maxWidth='100px'
+          width='100px'
           // image="/img/Card1.png"
         />
         <CardContent>
