@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
 import styles from './OneWords.module.css'
 
 
@@ -16,6 +15,7 @@ export default function OneWords() {
   const [trueAnswers, setTrueAnswers] = useState(0)
   const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
   const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
+  const [result, setResult] = useState()
 
   useEffect(() => {
     if(id === 'random'){
@@ -28,7 +28,12 @@ export default function OneWords() {
     
   }, [])
 
-  
+  const timer = () => {
+    setTimeout(() => {
+      setResult('')
+      setCount(count + 1)
+    }, 1000)
+  }
   
   const pushHandler = (event) => {
     // console.log(event.target.value)
@@ -36,25 +41,31 @@ export default function OneWords() {
     // console.log(words[0])
     // console.log(words[count].text.split('').map(el => el.toUpperCase()).join(''))
     // console.log(words[count].letter)
+    
+
     if (event.target.value === words[count]?.letter) {
+      timer()
+      setResult('Правильно 👍')
       setCheckAnswer(0)
-      setCount(count + 1)
       setTrueAnswers(trueAnswers + 1)
       setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrtrue: [...statWord.arrtrue, words[count]['Word.wordEnglish']]}))
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
     } else {
+      timer()
+      setResult('Не верно 🙁')
       setCheckAnswer(0)
       setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrfalse: [...statWord.arrfalse, words[count]['Word.wordEnglish']]}))
-      setCount(count + 1)
     }
   }
   
   if (count === words.length) {
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
+
+ 
 
   const talk = (str) => {
     var synth = window.speechSynthesis;
@@ -67,6 +78,7 @@ export default function OneWords() {
       (<>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
+      <div>{result}</div>
       {checkAnswer ? <div>попробуй еще разок</div> : null}
        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
         {words[count]?.option.split('').map((el, i) => {
