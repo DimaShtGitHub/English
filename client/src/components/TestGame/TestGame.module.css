@@ -1,7 +1,9 @@
 .picture {
   min-width: 200px;
   min-height: 320px;
+  position: unset !important;
 }
+
 
 /* .test {
   width: 300px;

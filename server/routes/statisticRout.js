@@ -3,6 +3,7 @@ const router = express.Router();
 const {  Word, Statistic } = require('../db/models')
 
 router.post('/', async (req, res) => {
+  console.log(' +++++++++++++++++++++++', req.body.stat);
   try {
   const truearr = req.body.stat.arrtrue
   const falsearr = req.body.stat.arrfalse
