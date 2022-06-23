@@ -7,9 +7,6 @@ import Box from '@mui/material/Box';
 import styles from './OneWords.module.css'
 
 
-
-
-
 export default function OneWords() {
   const { id } = useParams();
 
@@ -21,16 +18,16 @@ export default function OneWords() {
   const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
 
   useEffect(() => {
-    axios.get('http://localhost:3001/letter/all')
-      .then((data) => {
-        const words = data.data.filter((el) => el.topicId === Number(id))
-        setWords(words)
-      })
+    if(id === 'random'){
+      axios.get('http://localhost:3001/letter/all')
+      .then((data) => setWords(data.data))
+    } else {
+      axios.get(`http://localhost:3001/letter/${Number(id)}`)
+      .then((data) =>  setWords(data.data))  
+    }
+    
   }, [])
 
-
-  
-  
   
   
   const pushHandler = (event) => {
