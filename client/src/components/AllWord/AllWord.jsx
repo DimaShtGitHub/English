@@ -14,15 +14,15 @@ export default function AllWord() {
 
   return (
     <>
-  { allWord  ? (
-   <div> 
-    {allWord?.map(el => <OneWord word={el} key={el.id}/>)}
-</div>
-  ) : (
-null
-  )}
-  
-  </>   
+      { allWord  ? (
+      <div> 
+        {allWord?.map(el => <OneWord word={el} key={el.id}/>)}
+      </div>
+      ) : (
+      null
+      )}
+      
+    </>   
   )
 }
 

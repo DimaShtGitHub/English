@@ -3,17 +3,23 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import React, { useEffect, useState } from 'react'
+import './style.css'
+import { useParams } from 'react-router-dom';
 
 export default function TestGame() {
-  const [words, setWord] = useState([])
   const [fourW, setFourW] = useState([])
-  const [count, setCount] = useState([0])
+  const [count, setCount] = useState(0)
   const [image, setImage] = useState([])
-
+  const [trueW, setTrueW] = useState([])
+  const [points, setPoint] = useState([0])
+  const [lengthGame, setLengthGame] = useState([])
+  const {id} = useParams()
+  
   useEffect(() => {
-    axios.get('http://localhost:3002/words', {level: 1})
+    axios.get(`http://localhost:3001/words/${id}`)
       .then((data) => {
-        setWord(data.data.words)
+        setLengthGame(data.data.words.length)
+        
         let trueWord = data.data.words[count]
         
         let fourWord = data.data.words.filter((el) => el['Words.wordEnglish'] !== trueWord['Words.wordEnglish'])
@@ -21,14 +27,14 @@ export default function TestGame() {
         const arreyName = shufle(fourWord)
         arreyName.push(trueWord)
         setFourW(shufle(arreyName.slice(-4)))
-        console.log(trueWord);
+
 
         setImage(trueWord['Words.img'])
+        setTrueW(trueWord['Words.wordEnglish'])
+  
       }) 
     }, [count])
     
-    console.log(count);
-    console.log(image);
   function shufle(arr) {
     let barr = [...Array(arr.length)].fill('a');
     
@@ -41,25 +47,41 @@ export default function TestGame() {
         barr[rand] = arr[i]
       }
       }
+      
+      return barr
+    }
     
-    return barr
+  const click = (event) => {
+    if (count < lengthGame) {
+      setCount((prev) => prev + 1)
+
+      if(event.target.value === trueW){
+        setPoint((prev) => Number(prev) + 1)
+      } 
+    } 
   }
-  
-  const click = () => {
-    setCount((prev) => [Number(...prev) + 1])
-  }
-    
+
   return (
-    <div>
-      TestGame
-      <Box>
+    <div className='test_game_container'>
+      {count < lengthGame  ?   
+      <div>
+        TestGame
         <div>
-          <img className={'picture'} src={image} alt='pic'/>
+        <img className={'picture'} src={image} alt='pic'/>
         </div>
-        <ButtonGroup>
-          {fourW?.map((el, index) => <Button key={index}  onClick={() => click()}>{el['Words.wordEnglish']}</Button>)}
-        </ButtonGroup>
-      </Box>
+          
+        <Box>
+          <ButtonGroup>
+            {fourW?.map((el, index) => <Button key={index} value={el['Words.wordEnglish']} onClick={(event) => click(event)}>{el['Words.wordEnglish']}</Button>)}
+          </ButtonGroup>
+        </Box>
+      </div>
+       : 
+      <div>
+        <h2>Поздравляю, ты победил!!!</h2>
+        <h4>Ты ответил на {points} вопроса  правильно</h4>
+      </div>  }
+    
     </div>
   )
 }
