@@ -56,6 +56,11 @@ export default function OneWords() {
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
+  const talk = (str) => {
+    var synth = window.speechSynthesis;
+    var utterThis = new SpeechSynthesisUtterance(str);
+     synth.speak(utterThis);
+}
   return (
     <>
       {words[count] ? 
@@ -71,8 +76,14 @@ export default function OneWords() {
       </>)
        : (count ? 
         <><h3>Молодец, правильных ответов: {trueAnswers}</h3>
-        <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
-        <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
+        <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
+           let string = el
+          return <Button onClick={() => talk(string)} value={el} key={i}>{el}</Button>
+        })}</div>
+        <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
+          let string = el
+          return <Button value={el} onClick={() => talk(string)} key={i}>{el}</Button>
+        })}</div>
         </> : null)}
     </>
   )
