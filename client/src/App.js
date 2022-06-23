@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import {/*useSelector,*/ useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import NavBar from './components/NavBar/NavBar';
 import Reg from './components/Reg/Reg';
@@ -12,7 +12,7 @@ import Card from './components/Card/Card';
 import WordsPage from './components/WordsPage/WordsPage';
 import OneWords from './components/WordsPage/OneWords/OneWords'
 import AllWord from './components/AllWord/AllWord';
-
+import Lk from './components/Lk/Lk';
 
 import {getUser} from './redux/actions/userAC'
 import TestGame from './components/TestGame/TestGame';
@@ -20,7 +20,7 @@ import TestGame from './components/TestGame/TestGame';
 
 function App() {
   const dispatch = useDispatch()
-  // const user = useSelector((state)=>state.user)
+  const user = useSelector((state)=>state.user)
 
 
   useEffect(() => {
@@ -34,13 +34,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/card' element={<Card />} />
-          <Route path='/allword' element={<AllWord />} />
+          <Route path='/dictionary' element={<AllWord />} />
           <Route path='/coloring' element={<Coloring />} />
           <Route path="/words" element={<WordsPage />} />
           <Route path="/words/:id" element={<OneWords />} />
           <Route path="/card/:id" element={<TestGame />} />
           <Route path="/auth/reg" element={<Reg />} />
           <Route path="/auth/login" element={<Login />} />
+          {user.name ? ( <Route path='/lk' element={<Lk />} />): (null)}
         </Routes>
     </div>
   );

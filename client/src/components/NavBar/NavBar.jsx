@@ -36,6 +36,9 @@ export default function ButtonAppBar() {
     user.name ? navigate("/", { replace: true }) : navigate("/auth/reg", { replace: true })
   }
 
+  const LkHandler = (event) => {
+   if(user.name) navigate("/lk", { replace: true })
+  }
   // const cardsHandler= (event) => {
   //   popupState.close()
   //   navigate("/", { replace: true })
@@ -65,6 +68,7 @@ export default function ButtonAppBar() {
           </Typography>
           <Button onClick={regHandler} color="inherit">{user.name ? user.name : 'Регистрация'}</Button>
           <Button onClick={logHandler} color="inherit">{user.name ? 'Выйти' : 'Войти'}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? 'Личный кабинет' : null}</Button>
         </Toolbar>
       </AppBar>
     </Box>

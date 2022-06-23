@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import React, { useEffect, useState } from 'react'
-import './style.css'
+import styles from './TestGame.module.css'
 import { useParams } from 'react-router-dom';
 
 export default function TestGame() {
