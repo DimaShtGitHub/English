@@ -16,9 +16,11 @@ export default function Statistic( { word }) {
   return (
     <>
 
-<Card sx={{ Width: '25vh', Higth: '25vh' }} onClick={() => {talk(word['Word.wordEnglish'])}}>
+<Card sx={{ width: '40vh', height: '40vh' }} onClick={() => {talk(word['Word.wordEnglish'])}}>
       <CardActionArea>
-        <CardMedia className={styles.img}
+        <CardMedia 
+        //  width= '100%'
+         height= '100%'
           component="img"
           image={word['Word.img']}
           alt={word['Word.img'].slice(5)}
