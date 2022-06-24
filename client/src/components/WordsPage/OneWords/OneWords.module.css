@@ -7,6 +7,7 @@
   -o-background-size: 100%;
   margin-top: 0px;
 }
+
 .Img {
   height: 30vh ;
   margin-top: 20%; 
@@ -29,6 +30,11 @@
   -webkit-background-size: 100%;
   -o-background-size: 100%;
   margin-top: 0px;
+}
+
+.Stat {
+  position: relative;
+  padding-top: 27%;
 }
 
 

@@ -24,7 +24,7 @@ export default function OneWord({ word }) {
         </TableCell>
         <TableCell align="center">{word.wordRussian}</TableCell>
         <TableCell align="center"  component="th" scope="row">
-        <Avatar alt="Remy Sharp" src={word.img} sx={{ width: 60, height: 60 }}/></TableCell>
+        <img alt="Remy Sharp" src={word.img} style={{height: 60}}/></TableCell>
       </TableRow>    
     </>
   

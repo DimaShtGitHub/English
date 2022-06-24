@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import styles from './OneWords.module.css'
+import {useSelector} from 'react-redux';
 
 
 export default function OneWords() {
+    const user = useSelector((state)=>state.user)
   const { id } = useParams();
 
   const [count, setCount] = useState(0)
@@ -41,19 +43,15 @@ export default function OneWords() {
     }
   }, [])
 
+
+  const pushHandler = (event) => {
+
   // const timer = () => {
   //    setTimeout(() => {
   //    setResult('')
   //    setCount(count + 1)
   //    }, 1000)
   // }
-  
-  const pushHandler = (event) => {
-    // console.log(event.target.value)
-    // console.log(words[count])
-    // console.log(words[0])
-    // console.log(words[count].text.split('').map(el => el.toUpperCase()).join(''))
-    // console.log(words[count].letter)
 
     if (event.target.value === words[count]?.letter) {
       // timer()
@@ -77,7 +75,9 @@ export default function OneWords() {
     }
   }
   
-  if (count === words.length) {
+  console.log(count, words.length)
+  if (count !== 0 && count === words.length && user.name) {
+    console.log('отправил стату на базу')
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
@@ -103,16 +103,28 @@ export default function OneWords() {
         })}
       </ButtonGroup></div>
       </>)
-       : (count ? (
+
+      //  : (count ? 
+      //   (<>
+      //   <h2 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h2>
+      //   <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
+      //   <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
+      //   </>) : null)}
+
+       : (count ? (<>
         <div className={styles.Home}>
-          <h3>Молодец, правильных ответов: {trueAnswers}</h3>
+
+        <h3 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h3>
+
         <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
           return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
         })}</div>
+
         <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
           return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
         })}</div>
-        </div>)
+        </div>
+        </>)
          : null)}
     </>
   )
