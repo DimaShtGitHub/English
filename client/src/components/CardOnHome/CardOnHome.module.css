@@ -19,6 +19,7 @@
   max-width: 25vh;
   max-height: 20vh;
 }
+
 .Card:hover {
   cursor: pointer;
   transition: 0.8s;

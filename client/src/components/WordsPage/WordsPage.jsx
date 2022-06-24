@@ -25,15 +25,14 @@ export default function WordsPage() {
     {arrCard.length > 0 ? (
       <div>
          
-        <Container fixed className={styles.Container}>
+        <Container className={styles.Container}>
         {arrCard?.map(el => <OneCardWord  topic={el} key={el.id}/>)}
          
-        <Card sx={{ width: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/random`, {replace: true})}>
-    <CardActionArea >
-      <CardMedia className={styles.img}
-        component="img"
-        variant="quilted"
-         image='/img/Tree.png'
+        <Card className={styles.Card} onClick={()=> navigate(`/words/random`, {replace: true})}>
+    <CardActionArea className={styles.Area}>
+      <img className={styles.Img}
+         src='/img/Tree.png'
+         alt='загрузка'
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

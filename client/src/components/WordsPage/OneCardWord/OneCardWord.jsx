@@ -9,16 +9,15 @@ import { CardActionArea } from '@mui/material';
 
 export default function OneCardWord({ topic }) {
 
-
   const navigate = useNavigate(); 
+  
   return (
     <>
-    <Card sx={{ width: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/${topic.id}`, {replace: true})}>
-    <CardActionArea >
-      <CardMedia className={styles.img}
-        component="img"
-        variant="quilted"
-         image={topic['TopicImg.img']}
+    <Card className={styles.Card} onClick={()=> navigate(`/words/${topic.id}`, {replace: true})}>
+    <CardActionArea className={styles.Area}>
+      <img className={styles.Img}
+         src={topic['TopicImg.img']}
+         alt={'загрузка'}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
