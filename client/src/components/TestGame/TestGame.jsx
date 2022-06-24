@@ -20,6 +20,7 @@ export default function TestGame() {
     if(id === 'random'){
       axios.get(`http://localhost:3001/words/random`)
       .then(data => {
+        //data.data массив который нужен
         setLengthGame(data.data.length)
         })
     } else {
