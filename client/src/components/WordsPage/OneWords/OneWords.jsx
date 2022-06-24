@@ -29,10 +29,10 @@ export default function OneWords() {
   }, [])
 
   const timer = () => {
-    setTimeout(() => {
+    // setTimeout(() => {
       setResult('')
       setCount(count + 1)
-    }, 1000)
+      // }, 1000)
   }
   
   const pushHandler = (event) => {
@@ -44,8 +44,10 @@ export default function OneWords() {
     
 
     if (event.target.value === words[count]?.letter) {
-      timer()
-      setResult('Правильно 👍')
+      // timer()
+      // setResult('Правильно 👍')
+      setCount(count + 1)
+      talk(`Yes, ${words[count]['Word.wordEnglish']}`)
       setCheckAnswer(0)
       setTrueAnswers(trueAnswers + 1)
       setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, words[count]['Word.id']]}))
@@ -53,8 +55,10 @@ export default function OneWords() {
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
     } else {
-      timer()
-      setResult('Не верно 🙁')
+      // timer()
+      // setResult('Не верно 🙁')
+      setCount(count + 1)
+      talk('No')
       setCheckAnswer(0)
       setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrfalse: [...statWord.arrfalse, words[count]['Word.wordEnglish']]}))
@@ -62,6 +66,7 @@ export default function OneWords() {
   }
   
   if (count === words.length) {
+    console.log(stat)
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
