@@ -79,9 +79,9 @@ export default function TestGame() {
       }
     } 
   }
-  
-  if (count === lengthGame) {
-    console.log(stat);
+  console.log(count, lengthGame)
+  if (count === lengthGame ) {
+    console.log(111);
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
