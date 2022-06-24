@@ -41,7 +41,7 @@ function App() {
           <Route path="/card/:id" element={<TestGame />} />
           <Route path="/auth/reg" element={<Reg />} />
           <Route path="/auth/login" element={<Login />} />
-          {user.name ? ( <Route path='/lk' element={<Lk />} />): (null)}
+          <Route path='/lk' element={<Lk />} />
         </Routes>
     </div>
   );

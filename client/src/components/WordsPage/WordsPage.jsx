@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-
+import styles from './WordsPage.module.css'
 
 export default function WordsPage() {
 
@@ -23,13 +23,14 @@ export default function WordsPage() {
   return (
     <>
     {arrCard.length > 0 ? (
-        <div>
-        <Container fixed >
+      <div>
+          <div className={styles.Home}>
+        <Container fixed className={styles.Container}>
         {arrCard?.map(el => <OneCardWord  topic={el} key={el.id}/>)}
          
-        <Card sx={{ minWidth: '250px', maxWidth: '250px' }} onClick={()=> navigate(`/words/random`, {replace: true})}>
+        <Card sx={{ minWidth: '250px', maxWidth: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/random`, {replace: true})}>
     <CardActionArea >
-      <CardMedia
+      <CardMedia className={styles.img}
         component="img"
         variant="quilted"
          image='/img/Tree.png'
@@ -41,7 +42,7 @@ export default function WordsPage() {
       </CardContent>
     </CardActionArea>
     </Card>
-          </Container> </div>
+          </Container> </div></div>
     ):(<div>nooo</div>)}
     
     </>

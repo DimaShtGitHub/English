@@ -26,7 +26,7 @@ export default function Cards() {
 
       <Card sx={{ minWidth: '250px', maxWidth: '250px' }} className={styles.Card} onClick={()=> navigate(`/card/random`, {replace: true})}>
       <CardActionArea >
-        <CardMedia
+        <CardMedia className={styles.img}
           component="img"
           variant="quilted"
            image='/img/Tree.png'

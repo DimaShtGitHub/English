@@ -23,17 +23,30 @@ export default function OneWords() {
       .then((data) => setWords(data.data))
     } else {
       axios.get(`http://localhost:3001/letter/${Number(id)}`)
-      .then((data) =>  setWords(data.data))  
+      .then((data) => {
+        function shufle(arr) {
+          let barr = [...Array(arr.length)].fill('a');
+          for(let i = 0; i < barr.length; i++) {
+            let rand  = Math.floor(Math.random() * arr.length)
+            if(barr[rand] !== 'a') {
+              let num = barr.indexOf('a')
+              barr[num] = arr[i]
+            } else {
+              barr[rand] = arr[i]
+            }} 
+            return barr
+          }
+        setWords(shufle(data.data).slice(0, 4))
+      } )  
     }
-    
   }, [])
 
-  const timer = () => {
-    // setTimeout(() => {
-      setResult('')
-      setCount(count + 1)
-      // }, 1000)
-  }
+  // const timer = () => {
+  //    setTimeout(() => {
+  //    setResult('')
+  //    setCount(count + 1)
+  //    }, 1000)
+  // }
   
   const pushHandler = (event) => {
     // console.log(event.target.value)
@@ -41,7 +54,6 @@ export default function OneWords() {
     // console.log(words[0])
     // console.log(words[count].text.split('').map(el => el.toUpperCase()).join(''))
     // console.log(words[count].letter)
-    
 
     if (event.target.value === words[count]?.letter) {
       // timer()
@@ -66,17 +78,16 @@ export default function OneWords() {
   }
   
   if (count === words.length) {
-    console.log(stat)
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
  
-
   const talk = (str) => {
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(str);
      synth.speak(utterThis);
 }
+
   return (
     <>
       {words[count] ? 
