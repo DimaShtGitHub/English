@@ -3,6 +3,10 @@ import { useState } from "react"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import styles from './Reg.module.css'
 
 export default function Reg() {
   let navigate = useNavigate();
@@ -38,9 +42,9 @@ export default function Reg() {
   }
 
 
-
   return (
-    <form onSubmit={regHandler} className="reg_log_form">
+    <>
+    {/* <form onSubmit={regHandler} className="reg_log_form">
       <div><label className="reg-lable">Логин:</label></div>
       <div><input onChange={inputsHandler} name="name" className="form-control" type="text" pattern="[A-Za-z]\w+" minLength="1" placeholder="Введите логин" required></input></div>
       <div><label className="reg-lable">Email:</label></div>
@@ -48,7 +52,32 @@ export default function Reg() {
       <div><label className="reg-lable">Пароль:</label></div>
       <div><input onChange={inputsHandler} name="password" className="password form-control" type="password" minLength="1" placeholder="Введите пароль" required></input></div>
       {err.message ? <div className="err-message">{err.message}</div> : null}
-      <div><button type="submit" className="btn btn-primary btn-reg">Зарегистрироваться</button></div>
-    </form>
+      <div><button  className="btn btn-primary btn-reg">Зарегистрироваться</button></div>
+    </form> */}
+<div className={styles.Home}>
+    <Box onSubmit={regHandler} 
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 2, width: '80vh' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div className={styles.cont}>
+      <div>
+        <TextField onChange={inputsHandler} name="name" label="Введите логин:" id="outlined-size-normal" pattern="[A-Za-z]\w+" placeholder="Заполните поле на английском языке" />
+     </div>
+     <div>
+        <TextField onChange={inputsHandler} name="email" label="Введите Email:" id="outlined-size-normal" pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$" placeholder="Пример: aa@mail.ru" />
+      </div> 
+      <div>
+        <TextField onChange={inputsHandler} name="password" type="password" label="Введите пароль:" id="outlined-size-normal" placeholder="Длина должна быть больше двух символов"/>
+      </div>
+      {err.message ? <div className="err-message">{err.message}</div> : null}
+      <Button variant="text" type="submit">Зарегистрироваться</Button>
+    </div>
+    </Box>
+    </div>
+</>
   )
 }

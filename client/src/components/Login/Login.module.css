@@ -1,0 +1,13 @@
+.Home{
+  background-image: url(https://i.pinimg.com/originals/97/69/48/976948dc1e0ab9f951f2ab477b9053cc.jpg);
+  background-position: center;
+  min-height: 100vh;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  margin-top: 0px;
+}
+
+.cont {
+  padding-top: 10%;
+}
