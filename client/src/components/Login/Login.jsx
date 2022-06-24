@@ -53,7 +53,6 @@ export default function Reg() {
     </form> */}
 
 
-
     <div className={styles.Home}>
     <Box onSubmit={loginHandler} 
       component="form"
