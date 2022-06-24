@@ -1,6 +1,5 @@
 .container{
   display: flex;
-  /* align-content: space-evenly; */
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -14,10 +13,6 @@ min-height: 100vh;
 -webkit-background-size: 100%;
 -o-background-size: 100%;
 margin-top: 0px;  
-}
-
-.img{
-  max-height: 60vh;
 }
 
 

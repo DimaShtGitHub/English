@@ -1,16 +1,20 @@
 import React from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import styles from './Statistic.module.css'
+import {useSelector} from 'react-redux';
+
 export default function Statistic( { word }) {
+  const sound = useSelector((state) => state.sound)
 
   const talk = (str) => {
-    const synth = window.speechSynthesis;
-    const utterThis = new SpeechSynthesisUtterance(str);
-     synth.speak(utterThis);
+    if (sound) {
+      const synth = window.speechSynthesis;
+      const utterThis = new SpeechSynthesisUtterance(str);
+       synth.speak(utterThis);
+    }
 }
 
   return (

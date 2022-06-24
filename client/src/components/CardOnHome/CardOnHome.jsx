@@ -7,10 +7,15 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom' 
+import { useSelector } from 'react-redux';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 
 export default function CardOnHome() {
+
+  const sound = useSelector((state) => state.sound)
+
+  console.log(sound)
 
   const talk = (str) => {
     var synth = window.speechSynthesis;
@@ -37,7 +42,7 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
-          <VolumeUpIcon onClick={()=>talk('Тут можно раскрасить картинку')}/>
+          <VolumeUpIcon className={styles.Volume} onClick={()=> sound ? talk('Тут можно раскрасить картинку') : alert('включите звук, кнопочка в меню')}/>
       </Card>
 
       <Card  className={styles.Card} >
@@ -54,8 +59,8 @@ export default function CardOnHome() {
            В этой игре нужно будет по картинке выбрать правильное слово
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет по картинке выбрать правильное слово')}/>
+      </CardActionArea >
+      <VolumeUpIcon className={styles.Volume} onClick={()=> sound ? talk('В этой игре нужно будет по картинке выбрать правильное слово') : null}/>
     </Card>
 
       <Card className={styles.Card} >
@@ -73,7 +78,7 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет подставлять буквы в слова с иллюстрациями')}/>
+      <VolumeUpIcon className={styles.Volume} onClick={()=> sound ? talk('В этой игре нужно будет подставлять буквы в слова с иллюстрациями') : null}/>
     </Card>
 
 <Card  className={styles.Card} >
@@ -91,7 +96,7 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <VolumeUpIcon onClick={()=>talk(' Это словарик. Тут можно посмотреть все слова')}/>
+      <VolumeUpIcon className={styles.Volume} onClick={()=> sound ? talk(' Это словарик. Тут можно посмотреть все слова') : null}/>
       </Card>
 
     </Container>
