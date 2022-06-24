@@ -9,20 +9,21 @@
   margin-top: 0px;
 }
 
-img {
+
+.PonyHome {
+  left: 80%;
+  bottom: 5%;
   max-height: 30vh !important;;
   position: absolute !important;;  
   margin-top: 0px !important;
 }
 
-.PonyHome {
-  left: 80%;
-  bottom: 5%;
-}
-
 .PonyHome1 {
   left: 3%;
   bottom: 5%;
+  max-height: 30vh !important;;
+  position: absolute !important;;  
+  margin-top: 0px !important;
 }
 
 
