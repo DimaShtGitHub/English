@@ -7,15 +7,23 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom' 
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+
 
 export default function CardOnHome() {
+
+  const talk = (str) => {
+    var synth = window.speechSynthesis;
+    var utterThis = new SpeechSynthesisUtterance(str);
+     synth.speak(utterThis);
+}
 
   const navigate = useNavigate(); 
   return (
     <>
     <Container fixed className={styles.Container}>
-    <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/coloring', {replace: true})}>
-      <CardActionArea >
+    <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
+      <CardActionArea onClick={()=> navigate('/coloring', {replace: true})}>
         <CardMedia
           component="img"
           width='100px'
@@ -30,10 +38,11 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
+          <VolumeUpIcon onClick={()=>talk('Тут можно раскрасить картинку')}/>
       </Card>
 
-      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/card', {replace: true})}>
-      <CardActionArea >
+      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
+      <CardActionArea onClick={()=> navigate('/card', {replace: true})}>
         <CardMedia
           component="img"
           width='100px'
@@ -48,10 +57,11 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет по картинке выбрать правильное слово')}/>
     </Card>
 
-      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/words', {replace: true})}>
-      <CardActionArea >
+      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
+      <CardActionArea onClick={()=> navigate('/words', {replace: true})}>
         <CardMedia
           component="img"
           width='100px'
@@ -66,10 +76,11 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет подставлять буквы в слова с иллюстрациями')}/>
     </Card>
 
-<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/dictionary', {replace: true})}>
-      <CardActionArea >
+<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
+      <CardActionArea onClick={()=> navigate('/dictionary', {replace: true})}>
         <CardMedia
           component="img"
           width='100px'
@@ -84,6 +95,7 @@ export default function CardOnHome() {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <VolumeUpIcon onClick={()=>talk(' Это словарик. Тут можно посмотреть все слова')}/>
       </Card>
 
     </Container>
