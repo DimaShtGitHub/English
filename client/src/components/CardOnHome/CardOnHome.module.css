@@ -3,6 +3,7 @@
   opacity: .5;
   color: black !important;
 }
+
 .Card:hover {
   cursor: pointer;
   transition: 0.8s;
