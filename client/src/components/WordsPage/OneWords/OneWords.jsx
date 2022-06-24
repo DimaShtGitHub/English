@@ -7,7 +7,8 @@ import styles from './OneWords.module.css'
 import {useSelector} from 'react-redux';
 
 export default function OneWords() {
-    const user = useSelector((state)=>state.user)
+  const user = useSelector((state)=>state.user)
+  const sound = useSelector((state) => state.sound)
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -17,7 +18,6 @@ export default function OneWords() {
   const [trueAnswers, setTrueAnswers] = useState(0)
   const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
   const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
-  const [result, setResult] = useState()
 
   useEffect(() => {
     if(id === 'random'){
@@ -73,9 +73,11 @@ export default function OneWords() {
 
  
   const talk = (str) => {
+    if (sound) {
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(str);
      synth.speak(utterThis);
+    }
 }
 
   return (
@@ -85,7 +87,6 @@ export default function OneWords() {
       <div className={styles.Home}>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
-      <div>{result}</div>
       {checkAnswer ? <div>попробуй еще разок</div> : null}
        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
         {words[count]?.option.split('').map((el, i) => {

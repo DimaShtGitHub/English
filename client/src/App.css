@@ -20,3 +20,13 @@
   background-color: #96d94a;
   border-radius: 7px;
 }
+
+.volUp {
+  color: rgb(0, 132, 255);
+  margin-left: 7px;
+}
+
+.volDown {
+  color: red;
+  margin-left: 7px;
+}

@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function ButtonAppBar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
+  const sound = useSelector((state) => state.sound)
   const dispatch = useDispatch()
 
   const logHandler = (event) => {
@@ -44,6 +47,10 @@ export default function ButtonAppBar() {
   //   navigate("/", { replace: true })
   // }
 
+  const soundHandler = (event) => {
+    dispatch({ type: 'SET_SOUND', payload: !sound })
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className="menu-bar" position="static">
@@ -63,6 +70,7 @@ export default function ButtonAppBar() {
               </React.Fragment>
             )}
           </PopupState>
+          {sound ? <VolumeUpIcon className="volUp" onClick={soundHandler}/> : <VolumeDownIcon className="volDown" onClick={soundHandler}/>}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link className="logo-link" to="/">EnglishYoung</Link>
           </Typography>

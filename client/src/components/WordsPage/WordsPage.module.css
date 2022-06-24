@@ -29,8 +29,8 @@
 .Card {
   opacity: .7;
   margin: 15px;
-  width: 35vh;
-  height: 35vh;
+  width: 230px;
+  height: 230px;
   display: flex;
 }
 
@@ -42,6 +42,6 @@
 
 .Img {
   margin: 5px;
-  max-width: 34vh;
+  max-width: 225px;
   max-height: 168px;
 }
