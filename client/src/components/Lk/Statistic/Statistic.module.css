@@ -1,4 +1,18 @@
-.img {
-  height: 200px;
-  weight: 200px;
+.Card {
+  margin: 15px;
+  width: 40vh;
+  height: 40vh;
+  display: flex;
+}
+
+.Area {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.Img {
+  margin: 5px;
+  max-width: 39vh;
+  max-height: 175px;
 }

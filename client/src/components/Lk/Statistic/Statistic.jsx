@@ -16,23 +16,21 @@ export default function Statistic( { word }) {
   return (
     <>
 
-<Card sx={{ width: '40vh', height: '40vh' }} onClick={() => {talk(word['Word.wordEnglish'])}}>
-      <CardActionArea>
-        <CardMedia 
-        //  width= '100%'
-         height= '100%'
-          component="img"
-          image={word['Word.img']}
+<Card className={styles.Card} onClick={() => {talk(word['Word.wordEnglish'])}}>
+      <CardActionArea className={styles.Area}>
+        <img className={styles.Img}
+          src={word['Word.img']}
           alt={word['Word.img'].slice(5)}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography  gutterBottom variant="h5" component="div">
           {word['Word.wordEnglish']}
           </Typography>
           <Typography variant="body2" color="text.secondary">
           {word['Word.wordRussian']}
           </Typography>
         </CardContent>
+        
       </CardActionArea>
     </Card>
   
