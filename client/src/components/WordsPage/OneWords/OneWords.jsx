@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import styles from './OneWords.module.css'
 import {useSelector} from 'react-redux';
 
-
 export default function OneWords() {
     const user = useSelector((state)=>state.user)
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [count, setCount] = useState(0)
   const [words, setWords] = useState([])
@@ -46,16 +46,8 @@ export default function OneWords() {
 
   const pushHandler = (event) => {
 
-  // const timer = () => {
-  //    setTimeout(() => {
-  //    setResult('')
-  //    setCount(count + 1)
-  //    }, 1000)
-  // }
 
     if (event.target.value === words[count]?.letter) {
-      // timer()
-      // setResult('Правильно 👍')
       setCount(count + 1)
       talk(`Yes, ${words[count]['Word.wordEnglish']}`)
       setCheckAnswer(0)
@@ -65,8 +57,6 @@ export default function OneWords() {
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
     } else {
-      // timer()
-      // setResult('Не верно 🙁')
       setCount(count + 1)
       talk('No')
       setCheckAnswer(0)
@@ -113,16 +103,26 @@ export default function OneWords() {
 
        : (count ? (<>
         <div className={styles.Home}>
-
-        <h3 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h3>
+{statWord.arrtrue?.length > 0 ? (
+  <>
+   <h3 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h3>
 
         <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
           return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
-        })}</div>
-
-        <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
+        })}</div></>
+) : (
+  <h3 className={styles.Stat}>Правильных ответов нет</h3>
+)}
+       
+{statWord.arrfalse.length > 0 ? (
+   <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
           return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
         })}</div>
+):(null)}
+       
+        <div>
+              <Button variant="text" onClick={() => {navigate("/words", { replace: true })}} type="submit">Вернуться к выбору темы</Button>
+              </div>
         </div>
         </>)
          : null)}
