@@ -21,13 +21,12 @@ export default function CardOnHome() {
   const navigate = useNavigate(); 
   return (
     <>
-    <Container fixed className={styles.Container}>
-    <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
-      <CardActionArea onClick={()=> navigate('/coloring', {replace: true})}>
-        <CardMedia
-          component="img"
-          width='100px'
-          // image="/img/Card1.png"
+    <Container  className={styles.Container}>
+    <Card  className={styles.Card} >
+      <CardActionArea className={styles.Area} onClick={()=> navigate('/coloring', {replace: true})}>
+        <img className={styles.Img}
+          src="/img/Coloring.png"
+          alt='Coloring.png'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -41,12 +40,11 @@ export default function CardOnHome() {
           <VolumeUpIcon onClick={()=>talk('Тут можно раскрасить картинку')}/>
       </Card>
 
-      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
-      <CardActionArea onClick={()=> navigate('/card', {replace: true})}>
-        <CardMedia
-          component="img"
-          width='100px'
-          // image="/img/Card1.png"
+      <Card  className={styles.Card} >
+      <CardActionArea className={styles.Area} onClick={()=> navigate('/card', {replace: true})}>
+        <img className={styles.Img}
+            src="/img/Card.png"
+            alt='Coloring.png'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -60,12 +58,11 @@ export default function CardOnHome() {
       <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет по картинке выбрать правильное слово')}/>
     </Card>
 
-      <Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
-      <CardActionArea onClick={()=> navigate('/words', {replace: true})}>
-        <CardMedia
-          component="img"
-          width='100px'
-          // image="/img/Card1.png"
+      <Card className={styles.Card} >
+      <CardActionArea className={styles.Area} onClick={()=> navigate('/words', {replace: true})}>
+        <img className={styles.Img}
+          src="/img/Word.png"
+          alt='Word.png'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -79,12 +76,11 @@ export default function CardOnHome() {
       <VolumeUpIcon onClick={()=>talk('В этой игре нужно будет подставлять буквы в слова с иллюстрациями')}/>
     </Card>
 
-<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} >
-      <CardActionArea onClick={()=> navigate('/dictionary', {replace: true})}>
-        <CardMedia
-          component="img"
-          width='100px'
-          // image="/img/Card1.png"
+<Card  className={styles.Card} >
+      <CardActionArea className={styles.Area} onClick={()=> navigate('/dictionary', {replace: true})}>
+        <img className={styles.Img}
+         src="/img/Dictionary.png"
+         alt='Dictionary.png'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
