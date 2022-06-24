@@ -3,8 +3,12 @@
   width: 40vh;
   height: 40vh;
   display: flex;
+  opacity: .7;
 }
-
+.Card:hover{
+ transition: 0.8s;
+  opacity: 1;
+}
 .Area {
   display: flex !important;
   flex-direction: column !important;

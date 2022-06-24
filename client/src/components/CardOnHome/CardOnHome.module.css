@@ -1,7 +1,23 @@
 .Card {
-  margin-top: 15px;
-  opacity: .5;
-  color: black !important;
+  margin: 15px;
+  width: 35vh;
+  height: 40vh;
+  display: flex;
+  opacity: .7;
+}
+.Card:hover{
+ transition: 0.8s;
+  opacity: 1;
+}
+.Area {
+  display: flex;
+  flex-direction: column ;
+  justify-content: space-between ;
+}
+.Img {
+  margin: 5px;
+  max-width: 25vh;
+  max-height: 20vh;
 }
 
 .Card:hover {
