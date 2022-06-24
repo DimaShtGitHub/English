@@ -27,8 +27,10 @@ export default function AllWord() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+            <TableCell align="center">Прослушать</TableCell>
               <TableCell align="center">Английский язык</TableCell>
               <TableCell align="center">Русский язык</TableCell>
+              <TableCell align="center">Изображение</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

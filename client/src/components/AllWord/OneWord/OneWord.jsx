@@ -2,7 +2,8 @@ import React from 'react'
 
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-
+import Avatar from '@mui/material/Avatar';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 export default function OneWord({ word }) {
   const talk = () => {
@@ -17,11 +18,15 @@ export default function OneWord({ word }) {
       <TableRow
       key={word.id}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-        <TableCell   component="th" scope="row" align="center">
-          <button onClick={talk}> {word.wordEnglish}</button>
+        <TableCell component="th" scope="row" align="center"><VolumeUpIcon onClick={talk}/></TableCell>
+        <TableCell  component="th" scope="row" align="center">
+         {word.wordEnglish}
         </TableCell>
         <TableCell align="center">{word.wordRussian}</TableCell>
+        <TableCell align="center"  component="th" scope="row">
+        <Avatar alt="Remy Sharp" src={word.img} sx={{ width: 60, height: 60 }}/></TableCell>
       </TableRow>    
     </>
+  
   )
 }

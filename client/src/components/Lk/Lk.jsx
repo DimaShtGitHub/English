@@ -14,8 +14,6 @@ useEffect(()=> {
 
   return (
     <>
-    <div> Смена почты </div>
-    <div> Смена пароля </div>
     <div><h2>Слова, которые нужно повторить</h2>
     <div className={styles.container}> 
     {allStatistic?.length > 0 ? (

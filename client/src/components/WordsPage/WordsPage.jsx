@@ -21,14 +21,14 @@ export default function WordsPage() {
 }, [])
 
   return (
-    <>
+    <> <div className={styles.Home}>
     {arrCard.length > 0 ? (
       <div>
-          <div className={styles.Home}>
+         
         <Container fixed className={styles.Container}>
         {arrCard?.map(el => <OneCardWord  topic={el} key={el.id}/>)}
          
-        <Card sx={{ minWidth: '250px', maxWidth: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/random`, {replace: true})}>
+        <Card sx={{ width: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/random`, {replace: true})}>
     <CardActionArea >
       <CardMedia className={styles.img}
         component="img"
@@ -42,9 +42,10 @@ export default function WordsPage() {
       </CardContent>
     </CardActionArea>
     </Card>
-          </Container> </div></div>
-    ):(<div>nooo</div>)}
-    
+          </Container> </div>
+    ):(<div className="spinner-grow text-danger" role="status">
+    <span className="visually-hidden">Загрузка...</span>
+  </div>)}</div>
     </>
   )
 }

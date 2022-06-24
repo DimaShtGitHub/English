@@ -92,6 +92,7 @@ export default function OneWords() {
     <>
       {words[count] ? 
       (<>
+      <div className={styles.Home}>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
       <div>{result}</div>
@@ -100,17 +101,19 @@ export default function OneWords() {
         {words[count]?.option.split('').map((el, i) => {
         return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
         })}
-      </ButtonGroup>
+      </ButtonGroup></div>
       </>)
-       : (count ? 
-        <><h3>Молодец, правильных ответов: {trueAnswers}</h3>
+       : (count ? (
+        <div className={styles.Home}>
+          <h3>Молодец, правильных ответов: {trueAnswers}</h3>
         <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
           return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
         })}</div>
         <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
           return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
         })}</div>
-        </> : null)}
+        </div>)
+         : null)}
     </>
   )
 }

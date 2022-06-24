@@ -24,7 +24,7 @@ export default function Cards() {
     <Container fixed className={styles.Container}>
       {arrCard?.map(el => <OneCard topic={el} key={el.id}/>)}
 
-      <Card sx={{ minWidth: '250px', maxWidth: '250px' }} className={styles.Card} onClick={()=> navigate(`/card/random`, {replace: true})}>
+      <Card sx={{ width: '250px'}} className={styles.Card} onClick={()=> navigate(`/card/random`, {replace: true})}>
       <CardActionArea >
         <CardMedia className={styles.img}
           component="img"
