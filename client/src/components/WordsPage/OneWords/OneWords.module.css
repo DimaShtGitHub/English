@@ -1,5 +1,20 @@
+.Home {
+  background-image: url(https://krot.info/uploads/posts/2020-10/1603485561_53-p-fon-dlya-prezentatsii-powerpoint-57.jpg);
+  background-position: center;
+  min-height: 100vh;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  margin-top: 0px;
+}
+
+.Img {
+  height: 30vh ;
+  margin-top: 20%; 
+}
+
 .Word {
-  margin-top: 230px;  
+  margin-top: 10px;  
 }
 
 .Btn {
@@ -7,6 +22,20 @@
   margin-top: 10px; 
 }
 
-.Stat {
-  margin-top: 10%;
+.hh{
+  background-image: url(https://krot.info/uploads/posts/2020-10/1603485561_53-p-fon-dlya-prezentatsii-powerpoint-57.jpg);
+  background-position: center;
+  min-height: 100vh;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  margin-top: 0px;
 }
+
+.Stat {
+  height: 30vh ;
+  position: relative;
+  padding-top: 27%;
+}
+
+

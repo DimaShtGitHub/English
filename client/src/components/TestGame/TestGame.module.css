@@ -1,7 +1,10 @@
 .picture {
   min-width: 200px;
   min-height: 320px;
+  position: unset ;
+  height: 30vh ;
 }
+
 
 /* .test {
   width: 300px;

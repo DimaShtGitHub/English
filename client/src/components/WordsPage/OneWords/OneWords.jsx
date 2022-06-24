@@ -7,9 +7,6 @@ import styles from './OneWords.module.css'
 import {useSelector} from 'react-redux';
 
 
-
-
-
 export default function OneWords() {
     const user = useSelector((state)=>state.user)
   const { id } = useParams();
@@ -20,29 +17,61 @@ export default function OneWords() {
   const [trueAnswers, setTrueAnswers] = useState(0)
   const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
   const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
+  const [result, setResult] = useState()
 
   useEffect(() => {
-    axios.get('http://localhost:3001/letter/all')
+    if(id === 'random'){
+      axios.get('http://localhost:3001/letter/all')
+      .then((data) => setWords(data.data))
+    } else {
+      axios.get(`http://localhost:3001/letter/${Number(id)}`)
       .then((data) => {
-        const words = data.data.filter((el) => el.topicId === Number(id))
-        setWords(words)
-      })
+        function shufle(arr) {
+          let barr = [...Array(arr.length)].fill('a');
+          for(let i = 0; i < barr.length; i++) {
+            let rand  = Math.floor(Math.random() * arr.length)
+            if(barr[rand] !== 'a') {
+              let num = barr.indexOf('a')
+              barr[num] = arr[i]
+            } else {
+              barr[rand] = arr[i]
+            }} 
+            return barr
+          }
+        setWords(shufle(data.data).slice(0, 4))
+      } )  
+    }
   }, [])
 
+
   const pushHandler = (event) => {
+
+  // const timer = () => {
+  //    setTimeout(() => {
+  //    setResult('')
+  //    setCount(count + 1)
+  //    }, 1000)
+  // }
+
     if (event.target.value === words[count]?.letter) {
-      setCheckAnswer(0)
+      // timer()
+      // setResult('Правильно 👍')
       setCount(count + 1)
+      talk(`Yes, ${words[count]['Word.wordEnglish']}`)
+      setCheckAnswer(0)
       setTrueAnswers(trueAnswers + 1)
       setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrtrue: [...statWord.arrtrue, words[count]['Word.wordEnglish']]}))
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
     } else {
+      // timer()
+      // setResult('Не верно 🙁')
+      setCount(count + 1)
+      talk('No')
       setCheckAnswer(0)
       setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrfalse: [...statWord.arrfalse, words[count]['Word.wordEnglish']]}))
-      setCount(count + 1)
     }
   }
   
@@ -52,25 +81,51 @@ export default function OneWords() {
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
+ 
+  const talk = (str) => {
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance(str);
+     synth.speak(utterThis);
+}
+
   return (
     <>
       {words[count] ? 
       (<>
+      <div className={styles.Home}>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
+      <div>{result}</div>
       {checkAnswer ? <div>попробуй еще разок</div> : null}
        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
         {words[count]?.option.split('').map((el, i) => {
         return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
         })}
-      </ButtonGroup>
+      </ButtonGroup></div>
       </>)
-       : (count ? 
-        (<>
-        <h2 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h2>
-        <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
-        <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
-        </>) : null)}
+
+      //  : (count ? 
+      //   (<>
+      //   <h2 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h2>
+      //   <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
+      //   <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
+      //   </>) : null)}
+
+       : (count ? (<>
+        <div className={styles.Home}>
+
+        <h3 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h3>
+
+        <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
+          return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
+        })}</div>
+
+        <div>неправильные ответы: {statWord.arrfalse.map((el, i) => {
+          return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
+        })}</div>
+        </div>
+        </>)
+         : null)}
     </>
   )
 }

@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const {  Word, Statistic } = require('../db/models')
 
+router.get('/user', async(req, res) => {
+  const id = req.session?.user?.id
+  const usersStatistic = await Statistic.findAll({where: {userId: id},include: {model: Word}, raw: true})
+  res.json(usersStatistic)
+})
+
+
 router.post('/', async (req, res) => {
   try {
   const truearr = req.body.stat.arrtrue
@@ -39,8 +46,13 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-
 })
 
+
+router.get('/user', async(req, res) => {
+  const id = req.session?.user?.id
+  const usersStatistic = await Statistic.findAll({where: {userId: id},include: {model: Word}, raw: true})
+  res.json(usersStatistic)
+})
   
 module.exports = router;

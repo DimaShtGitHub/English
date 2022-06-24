@@ -68,7 +68,7 @@ export default function CardOnHome() {
       </CardActionArea>
     </Card>
 
-<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/allword', {replace: true})}>
+<Card sx={{ width: '200px', minHeight: '200px' }} className={styles.Card} onClick={()=> navigate('/dictionary', {replace: true})}>
       <CardActionArea >
         <CardMedia
           component="img"
@@ -77,10 +77,10 @@ export default function CardOnHome() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            All Word
+          Dictionary
           </Typography>
           <Typography variant="body2" color="text.secondary">
-           Тут можно посмотреть все слова
+           Это словарик. Тут можно посмотреть все слова
           </Typography>
         </CardContent>
       </CardActionArea>

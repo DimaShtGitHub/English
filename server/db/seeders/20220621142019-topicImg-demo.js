@@ -16,7 +16,7 @@ module.exports = {
     },
     {
       topicId: 3,
-      img: '/img/One.png',
+      img: '/img/Three.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },

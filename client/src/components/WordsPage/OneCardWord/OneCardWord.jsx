@@ -13,9 +13,9 @@ export default function OneCardWord({ topic }) {
   const navigate = useNavigate(); 
   return (
     <>
-    <Card sx={{ minWidth: '250px', maxWidth: '250px' }} onClick={()=> navigate(`/words/${topic.id}`, {replace: true})}>
+    <Card sx={{ width: '250px' }} className={styles.Card} onClick={()=> navigate(`/words/${topic.id}`, {replace: true})}>
     <CardActionArea >
-      <CardMedia
+      <CardMedia className={styles.img}
         component="img"
         variant="quilted"
          image={topic['TopicImg.img']}
