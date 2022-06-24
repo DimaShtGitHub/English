@@ -71,7 +71,7 @@ export default function Reg() {
         <TextField onChange={inputsHandler} name="password" type="password" label="Введите пароль:" id="outlined-size-normal" placeholder="Длина должна быть больше двух символов"/>
       </div>
       {err.message ? <div >{err.message}</div> : null}
-      <Button variant="text" type="submit">Зарегистрироваться</Button>
+      <Button variant="text" type="submit">Войти</Button>
     </div>
     </Box>
     </div>
