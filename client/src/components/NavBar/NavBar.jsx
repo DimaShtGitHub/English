@@ -52,13 +52,13 @@ export default function ButtonAppBar() {
             {(popupState) => (
               <React.Fragment>
                 <Button variant="contained" {...bindTrigger(popupState)}>
-                  Игра
+                  Game
                 </Button>
                 <Menu {...bindMenu(popupState)}>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring">Coloring</Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Words</Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Card</Link></MenuItem>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/allword">Word</Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Dictionary</Link></MenuItem>
                 </Menu>
               </React.Fragment>
             )}
