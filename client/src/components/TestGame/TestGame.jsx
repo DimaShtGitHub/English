@@ -3,48 +3,39 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import React, { useEffect, useState } from 'react'
 import style from './TestGame.module.css'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { unstable_composeClasses } from '@mui/material';
+import {useSelector} from 'react-redux';
+import styles from './TestGame.module.css'
 
 export default function TestGame() {
-  const [fourW, setFourW] = useState([])
-  const [count, setCount] = useState(0)
-  const [image, setImage] = useState([])
-  const [trueW, setTrueW] = useState({title: '', id: 0})
-  const [points, setPoint] = useState([0])
-  const [lengthGame, setLengthGame] = useState()
-  const [result, setResult] = useState([])
-  const [stat, setStat] = useState({arrtrue: [], arrfalse: []})
-  const {id} = useParams()
+
+   const {id} = useParams() 
+   const user = useSelector((state)=>state.user)
+   const [count, setCount] = useState(0)
+   //массивы для бэка
+   const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
+   const [allword, setAllWord] =useState([])
+   const sound = useSelector((state) => state.sound)
+   const navigate = useNavigate();
   
   useEffect(() => {
     if(id === 'random'){
       axios.get(`http://localhost:3001/words/random`)
       .then(data => {
         //data.data массив который нужен
-        setLengthGame(data.data.length)
-        })
+        setAllWord(data.data)
+      })
     } else {
       axios.get(`http://localhost:3001/words/${id}`)
-        .then((data) => {
-          setLengthGame(data.data.words.length)
-          let trueWord = data.data.words[count]
-          if(count !== lengthGame) {
-            let fourWord = data.data.words
-              .filter((el) => el['Words.wordEnglish'] !== trueWord['Words.wordEnglish']);
-            
-            const arreyName = shufle(fourWord)
-            arreyName.push(trueWord)
-            setFourW(shufle(arreyName.slice(-4)))
-            setImage(trueWord['Words.img'])
-            setTrueW({title: trueWord['Words.wordEnglish'], id: trueWord['Words.id']})
-          }   
-        }) 
+      .then((data) => {
+        setAllWord(data.data)
+      }) 
     }
-  }, [count])
-    
+  }, [])
+  
   function shufle(arr) {
     let barr = [...Array(arr.length)].fill('a');
-    
     for(let i = 0; i < barr.length; i++) {
       let rand  = Math.floor(Math.random() * arr.length)
       if(barr[rand] !== 'a') {
@@ -52,66 +43,83 @@ export default function TestGame() {
         barr[num] = arr[i]
       } else{
         barr[rand] = arr[i]
-      }
-    }
-      
+      }}
     return barr
   }
 
-  function timerResult() {
-    setTimeout(() => {
-      setResult('')
-      setCount((prev) => prev + 1)
-    }, 1000)
-  }
+  let arrRandom;
+    if(allword.length> 1 && count <= allword.length ) {
+    const wordOnBut = allword.map(el => el.wordEnglish)
+ const filterArr = wordOnBut.filter(el => el !== allword[count]?.wordEnglish)
+ let arrRandom2 = shufle(filterArr.slice(0, 3))
+ arrRandom2.push(allword[count]?.wordEnglish)
+ arrRandom = shufle(arrRandom2)
+    }
 
-  const click = (event) => {
-    if (count < lengthGame) {
-      timerResult()
+const click = (event) => {
+  setCount(count+1)
+if(event.target.value === allword[count].wordEnglish)  {
+  setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue,  allword[count].id]}))
+  talk(`Yes, ${allword[count].wordEnglish}`)
+} else {
+  setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse,  allword[count].id]}))
+  talk('No')
+}}
 
-      if(event.target.value === trueW.title){
-        setResult('Mолодец 👍')      
-        setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, Number(event.target.id)]}))
-        setPoint((prev) => Number(prev) + 1)  
+  const talk = (str) => {
+    if (sound) {
+    const synth = window.speechSynthesis;
+    const utterThis = new SpeechSynthesisUtterance(str);
+     synth.speak(utterThis);
+    }
+}
 
-      } else {
-        setResult('Не верно 🙁')
-        setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, trueW.id]}))
-      }
-    } 
-  }
-  console.log(count, lengthGame)
-  if (count === lengthGame ) {
-    console.log(111);
-    axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
-  }
+if (count !== 0 && count === allword.length && user.name) {
+  axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
+}
 
   return (
     <>
-      {count !== lengthGame  ?   
-        <div >
-          <img className={style.picture} src={image} alt='pic'/>
-          <h3>{result}</h3>        
-            <ButtonGroup>
-              {fourW?.map((el, index) => 
+    { allword[count] ? (
+      <>
+      <div className={styles.Home}>
+      <img className={style.Img} src={allword[count].img} alt='pic'/>
+      <ButtonGroup>
+              {arrRandom?.map((el, index) => 
                 <Button 
                   key={index}
-                  id={el['Words.id']} 
-                  value={el['Words.wordEnglish']} 
-                  onClick={(event) => click(event)}>
-                
-                  {el['Words.wordEnglish']}
+                  value={el} 
+                  onClick={(e)=>click(e)}>{el}
                 </Button>
               )}
             </ButtonGroup>
-          
-        </div>
-        : 
-        <div>
-          <h2>Поздравляю, ты победил!!!</h2>
-          <h4>Ты ответил на {points} вопроса  правильно</h4>
-        </div>
-      }
+      </div>
+      </>
+    ):(
+      <>
+       <div className={styles.Home}>
+      <h3 className={styles.Stat}>Игра окончена</h3>
+      {stat.arrtrue?.length > 0 ? (
+  <>
+   <h3 >Молодец, правильных ответов: {stat.arrtrue.length}</h3>
+
+        <div>правильные ответы: {stat.arrtrue.map((el, i)=> {
+          return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
+        })}</div></>
+) : (
+  <h3 >Правильных ответов нет</h3>
+)}
+{stat.arrfalse.length > 0 ? (
+   <div>неправильные ответы: {stat.arrfalse.map((el, i) => {
+          return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
+        })}</div>
+):(null)}
+      <div>
+     <Button variant="text" onClick={() => {navigate("/card", { replace: true })}} type="submit">Вернуться к выбору темы</Button>
+         </div></div>
+      </>
+    )}
+
     </>
   )
 }
