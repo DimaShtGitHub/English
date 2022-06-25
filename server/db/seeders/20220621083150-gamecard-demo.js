@@ -57,12 +57,6 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      topicId: 2,
-      wordId: 24,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
       topicId: 3,
       wordId: 47,
       createdAt: new Date(),

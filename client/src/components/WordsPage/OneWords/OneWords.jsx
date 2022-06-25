@@ -67,7 +67,6 @@ export default function OneWords() {
   
   console.log(count, words.length)
   if (count !== 0 && count === words.length && user.name) {
-    console.log('отправил стату на базу')
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
 
@@ -94,14 +93,6 @@ export default function OneWords() {
         })}
       </ButtonGroup></div>
       </>)
-
-      //  : (count ? 
-      //   (<>
-      //   <h2 className={styles.Stat}>Молодец, правильных ответов: {trueAnswers}</h2>
-      //   <div>правильные ответы: {statWord.arrtrue.join(', ')}</div>
-      //   <div>неправильные ответы: {statWord.arrfalse.join(', ')}</div>
-      //   </>) : null)}
-
        : (count ? (<>
         <div className={styles.Home}>
 {statWord.arrtrue?.length > 0 ? (
