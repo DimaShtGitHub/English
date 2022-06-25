@@ -15,7 +15,7 @@ export default function OneWords() {
   const [trueAnswers, setTrueAnswers] = useState(0)
   const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
   const [statWord, setStatWord] = useState({arrtrue: [], arrfalse:[]})
-  const [result, setResult] = useState()
+
 
   useEffect(() => {
     if(id === 'random'){
@@ -28,12 +28,6 @@ export default function OneWords() {
     
   }, [])
 
-  const timer = () => {
-    setTimeout(() => {
-      setResult('')
-      setCount(count + 1)
-    }, 1000)
-  }
   
   const pushHandler = (event) => {
     // console.log(event.target.value)
@@ -44,8 +38,7 @@ export default function OneWords() {
     
 
     if (event.target.value === words[count]?.letter) {
-      timer()
-      setResult('Правильно 👍')
+      setCount(count + 1)
       setCheckAnswer(0)
       setTrueAnswers(trueAnswers + 1)
       setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue, words[count]['Word.id']]}))
@@ -53,8 +46,7 @@ export default function OneWords() {
     } else if (checkAnswer < 1) {
       setCheckAnswer(checkAnswer + 1)
     } else {
-      timer()
-      setResult('Не верно 🙁')
+      setCount(count + 1)
       setCheckAnswer(0)
       setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse, words[count]['Word.id']]}))
       setStatWord((prev) => ({...prev, arrfalse: [...statWord.arrfalse, words[count]['Word.wordEnglish']]}))
@@ -75,18 +67,18 @@ export default function OneWords() {
   return (
     <>
       {words[count] ? 
-      (<>
-      <img className={styles.Img} src={words[count]['Word.img']} alt="" />
-      <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
-      <div>{result}</div>
-      {checkAnswer ? <div>попробуй еще разок</div> : null}
-       <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
-        {words[count]?.option.split('').map((el, i) => {
-        return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
-        })}
-      </ButtonGroup>
-      </>)
-       : (count ? 
+        (<>
+        <img className={styles.Img} src={words[count]['Word.img']} alt="" />
+        <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
+        {checkAnswer ? <div>попробуй еще разок</div> : null}
+        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
+          {words[count]?.option.split('').map((el, i) => {
+          return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
+          })}
+        </ButtonGroup>
+        </>)
+       : 
+       (count ? 
         <><h3>Молодец, правильных ответов: {trueAnswers}</h3>
         <div>правильные ответы: {statWord.arrtrue.map((el, i)=> {
            let string = el
@@ -96,7 +88,10 @@ export default function OneWords() {
           let string = el
           return <Button value={el} onClick={() => talk(string)} key={i}>{el}</Button>
         })}</div>
-        </> : null)}
+        </> 
+        : 
+        null)
+      }
     </>
   )
 }

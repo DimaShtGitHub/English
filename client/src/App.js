@@ -16,6 +16,7 @@ import Lk from './components/Lk/Lk';
 
 import {getUser} from './redux/actions/userAC'
 import TestGame from './components/TestGame/TestGame';
+import TwoTest from './components/TestGame/TwoTest';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
     <div className="App">
         <NavBar />
         <Routes>
+          <Route path="/test" element={<TwoTest />} />
           <Route path="/" element={<Home />} />
           <Route path='/card' element={<Card />} />
           <Route path='/dictionary' element={<AllWord />} />
