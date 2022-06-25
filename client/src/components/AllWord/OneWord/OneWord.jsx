@@ -21,15 +21,15 @@ export default function OneWord({ word }) {
   return (
     <>
       <TableRow
-      key={word.id}
+      key={word?.id}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
         <TableCell component="th" scope="row" align="center"><VolumeUpIcon onClick={talk}/></TableCell>
         <TableCell  component="th" scope="row" align="center">
-         {word.wordEnglish}
+         {word?.wordEnglish}
         </TableCell>
-        <TableCell align="center">{word.wordRussian}</TableCell>
+        <TableCell align="center">{word?.wordRussian}</TableCell>
         <TableCell align="center"  component="th" scope="row">
-        <img alt="Remy Sharp" src={word.img} style={{height: 60}}/></TableCell>
+        <img alt="Remy Sharp" src={word?.img} style={{height: 60}}/></TableCell>
       </TableRow>    
     </>
   

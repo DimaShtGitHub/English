@@ -45,8 +45,6 @@ export default function OneWords() {
 
 
   const pushHandler = (event) => {
-
-
     if (event.target.value === words[count]?.letter) {
       setCount(count + 1)
       talk(`Yes, ${words[count]['Word.wordEnglish']}`)
