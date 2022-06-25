@@ -84,7 +84,7 @@ if (count !== 0 && count === allword.length && user.name) {
       <>
       <div className={styles.Home}>
       <img className={style.Img} src={allword[count].img} alt='pic'/>
-      <ButtonGroup>
+      <div><ButtonGroup className={style.Btn}>
               {arrRandom?.map((el, index) => 
                 <Button 
                   key={index}
@@ -92,7 +92,7 @@ if (count !== 0 && count === allword.length && user.name) {
                   onClick={(e)=>click(e)}>{el}
                 </Button>
               )}
-            </ButtonGroup>
+            </ButtonGroup></div>
       </div>
       </>
     ):(
