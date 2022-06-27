@@ -16,17 +16,20 @@
   color: rgb(255, 255, 255);
 }
 
-.menu-bar {
+/* .menu-bar {
   background-color: #96d94a;
-  border-radius: 7px;
-}
+} */
 
 .volUp {
-  color: rgb(0, 132, 255);
+  color: rgb(255, 255, 255);
+  width: 3% !important;
+  height: 4% !important;
   margin-left: 7px;
 }
 
 .volDown {
   color: red;
+  width: 3% !important;
+  height: 4% !important; 
   margin-left: 7px;
 }
