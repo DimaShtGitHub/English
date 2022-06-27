@@ -78,9 +78,6 @@ export default function ButtonAppBar() {
   //   navigate("/", { replace: true })
   // }
 
-
-  console.log('состояние саунда', sound)
-
   const soundHandler = (event) => {
     if (localStorage.volume === 'on') {
       localStorage.volume = 'off'
@@ -123,9 +120,9 @@ export default function ButtonAppBar() {
               </div>
             </Link>
           </Typography>
-          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p>Регистрация</p></div>}</Button>
-          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p>Личный кабинет</p></div> : null}</Button>
-          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p>войти</p></div>}</Button>
+          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p className={style.Menu}>Регистрация</p></div>}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p className={style.Menu}>Личный кабинет</p></div> : null}</Button>
+          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p className={style.Menu}>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p className={style.Menu}>войти</p></div>}</Button>
         </Toolbar>
       </AppBar>
     </Box>

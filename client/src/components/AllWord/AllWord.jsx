@@ -36,9 +36,10 @@ export default function AllWord() {
             ||
         el.wordRussian.split('').map(el => el.toLowerCase())
           .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join(''))) 
-          && (el.wordEnglish[0].toLowerCase() === event?.target?.value[0].toLowerCase() || el.wordRussian[0].toLowerCase() === event?.target?.value[0].toLowerCase())
+          && 
+          (el.wordEnglish[0].toLowerCase() === event?.target?.value[0].toLowerCase() || 
+          el.wordRussian[0].toLowerCase() === event?.target?.value[0].toLowerCase())
       ))
-
     } else {
       setFindWord([])
     }
