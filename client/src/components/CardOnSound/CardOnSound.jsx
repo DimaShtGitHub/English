@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import OneCard from './OneCard/OneCard';
-import styles from './Card.module.css'
+import styles from './CardOnSound.module.css'
 import Container from '@mui/material/Container';
 import {useNavigate } from 'react-router-dom'
 import Card from '@mui/material/Card';
@@ -25,7 +25,7 @@ export default function Cards() {
       <Container className={styles.Container}>
         {arrCard?.map(el => <OneCard topic={el} key={el.id} />)}
 
-        <Card className={styles.Card} onClick={() => navigate(`/card/random`, { replace: true })}>
+        <Card className={styles.Card} onClick={() => navigate(`/sound/random`, { replace: true })}>
           <CardActionArea className={styles.Area}>
             <img className={styles.Img}
               src='/img/Tree.png'
