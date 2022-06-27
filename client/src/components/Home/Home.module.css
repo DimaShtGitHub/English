@@ -1,6 +1,13 @@
 .Home {
   background-image: url(https://oir.mobi/uploads/posts/2021-03/1616436809_42-p-kartinki-dlya-fona-saita-52.jpg);
   /*распределяем картинку на весь экран*/
+  /* background-color: rgb(181, 235, 212); */ 
+
+  /* background: #7E8ACE;
+  background: -moz-linear-gradient(-45deg, #7E8ACE 0%, #7BEFB1 75%, #41AAFF 100%);
+  background: -webkit-linear-gradient(-45deg, #7E8ACE 0%, #7BEFB1 75%, #41AAFF 100%);
+  background: linear-gradient(135deg, #7E8ACE 0%, #7BEFB1 75%, #41AAFF 100%);
+   */
   background-position: center;
   min-height: 100vh;
   -moz-background-size: 100%; 
