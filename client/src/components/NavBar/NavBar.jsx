@@ -14,6 +14,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import style from './NavBar.module.css'
+
 import a_img from '../../assets/headerIcons/a.png'
 import login_img from '../../assets/headerIcons/login.png'
 import logout_img from '../../assets/headerIcons/logout.png'
@@ -81,6 +82,7 @@ export default function ButtonAppBar() {
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Слово <img className={style.iconsHeder} src={words_img} alt="words" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/sound">Звуки <img className={style.iconsHeder} src={sound_img} alt="sound" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Словарь <img className={style.iconsHeder} src={dictonary_img} alt="dictonary" /></Link></MenuItem>
+
                 </Menu>
               </React.Fragment>
             )}
