@@ -14,6 +14,7 @@ useEffect(()=> {
   .then(data => setAllStatistic(data.data))
 }, [])
 
+
   return (
     <>
     <div className={styles.Home}>
