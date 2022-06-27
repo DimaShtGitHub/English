@@ -14,6 +14,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import style from './NavBar.module.css'
+
 import a_img from '../../assets/headerIcons/a.png'
 import login_img from '../../assets/headerIcons/login.png'
 import logout_img from '../../assets/headerIcons/logout.png'
@@ -24,11 +25,6 @@ import dictonary_img from '../../assets/headerIcons/international-childrens-day.
 import logo_img from '../../assets/headerIcons/free-icon-learning-4615290.png'
 import reg_img from '../../assets/headerIcons/patient.png'
 import lk_img from '../../assets/headerIcons/lk.png'
-
-
-
-
-
 
 export default function ButtonAppBar() {
   const navigate = useNavigate();
@@ -82,6 +78,7 @@ export default function ButtonAppBar() {
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Буква <img className={style.iconsHeder} src={a_img} alt="letter" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Слово <img className={style.iconsHeder} src={words_img} alt="words" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Словарь <img className={style.iconsHeder} src={dictonary_img} alt="dictonary" /></Link></MenuItem>
+
                 </Menu>
               </React.Fragment>
             )}
