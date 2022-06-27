@@ -15,8 +15,6 @@ export default function CardOnHome() {
 
   const sound = useSelector((state) => state.sound)
 
-  console.log(sound)
-
   const talk = (str) => {
     var synth = window.speechSynthesis;
     var utterThis = new SpeechSynthesisUtterance(str);
