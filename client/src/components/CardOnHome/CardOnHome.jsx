@@ -24,22 +24,22 @@ export default function CardOnHome() {
   const navigate = useNavigate(); 
   return (
     <>
-      <Container  className={styles.Container}>
-        <Card  className={styles.Card} >
-          <CardActionArea className={styles.Area} onClick={()=> navigate('/coloring', {replace: true})}>
-            <img className={styles.Img}
-              src="/img/Coloring.png"
-              alt='Coloring.png'
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Coloring
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Тут можно раскрасить картинку
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+    <Container  className={styles.Container} >
+    <Card  className={styles.Card} >
+      <CardActionArea className={styles.Area} onClick={()=> navigate('/coloring', {replace: true})}>
+        <img className={styles.Img}
+          src="/img/Coloring.png"
+          alt='Coloring.png'
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Coloring
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Тут можно раскрасить картинку
+          </Typography>
+        </CardContent>
+      </CardActionArea>
           <VolumeUpIcon className={styles.Volume} onClick={()=> sound ? talk('Тут можно раскрасить картинку') : alert('включите звук, кнопочка в меню')}/>
         </Card>
 

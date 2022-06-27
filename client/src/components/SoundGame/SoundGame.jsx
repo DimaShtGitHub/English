@@ -7,9 +7,10 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import styles from './SoundGame.module.css'
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-
+import Ansew from './Ansew/Ansew';
 
 export default function SoundGame() {
+console.count('SoundGame')
 
   const {id} = useParams() 
    const user = useSelector((state)=>state.user)
@@ -21,6 +22,7 @@ export default function SoundGame() {
    const navigate = useNavigate();
    const [res, setRes] = useState({arrtrue: [], arrfalse:[]})
    const [ansew, setAnsew] = useState(0)
+   const [val, setValue] = useState(true)
 
   useEffect(() => {
     if(id === 'random'){
@@ -62,10 +64,12 @@ arrRandom = shufle(arrRandom2)
 
 
   const talk = (str) => {
-    if (sound) {
-    const synth = window.speechSynthesis;
+    if (sound && val === true) {
+      setTimeout(() => {
+       const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(str);
-     synth.speak(utterThis);
+     synth.speak(utterThis);   
+      }, 200)
     }
 }
 
@@ -75,11 +79,21 @@ const click = (event) => {
   if(event.target.value === allword[count].img || event.target.parentNode.value === allword[count].img )  {
     setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue,  allword[count].id]}))
     setRes((prev) => ({...prev, arrtrue: [...res.arrtrue,  allword[count].wordEnglish]}))
- setAnsew(1) ;
+  setAnsew(1);
+  setTimeout(()=> {
+  setAnsew(0)
+  setValue(true)
+ }, 700)
+ setValue(false)
   } else {
     setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse,  allword[count].id]}))
     setRes((prev) => ({...prev, arrfalse: [...res.arrfalse,  allword[count].wordEnglish]}))
-    setAnsew(2) ;
+    setAnsew(2);
+    setTimeout(()=> {
+      setAnsew(0)
+      setValue(true)
+       }, 700)
+       setValue(false)
   }
 }
 
@@ -88,74 +102,29 @@ if (count !== 0 && count === allword.length && user.name) {
 }
 
 
+
   return (
     <>
     { allword[count] ? (
-      ansew === 1 ? (
         <>
         <div className={styles.Home}>
           <h4 className={styles.Stat}>Задание {count+1} из {allword.length}</h4>
-          <img src="/img/Ok.png" alt="Ok.png" className={styles.Ok1}/>
-        <h3   onClick= {talk(allword[count].wordEnglish)}>{allword[count].wordEnglish}</h3>
+       <h3   onClick= {talk(allword[count].wordEnglish)}>{allword[count].wordEnglish}</h3>
         <VolumeUpIcon className={styles.Volume} onClick={() => sound ? talk(allword[count].wordEnglish) : null}/>
         <div><ButtonGroup >
         {arrRandom?.map((el, index) => 
           <Button 
-            key={index}
-            value={el} 
-            onClick={(e)=>click(e)}
-            >
-             <img className={styles.Img} src={el} alt={el} />
-          </Button>
-        )}
-      </ButtonGroup></div>
-      </div>
-       </> 
-      ) : (ansew === 2 ? (
-        <>
-        <div className={styles.Home}>
-          <h4 className={styles.Stat}>Задание {count+1} из {allword.length}</h4>
-          <img src="/img/Error.png" alt="Error.png" className={styles.Ok1}/>
-        <h3  onClick= {talk(allword[count].wordEnglish)}>{allword[count].wordEnglish}</h3>
-        <VolumeUpIcon className={styles.Volume} onClick={() => sound ? talk(allword[count].wordEnglish) : null}/>
-        <div><ButtonGroup >
-        {arrRandom?.map((el, index) => 
-          <Button 
-            key={index}
-            value={el} 
-            onClick={(e)=>click(e)}
-            >
-             <img className={styles.Img} src={el} alt={el} />
-          </Button>
-        )}
-      </ButtonGroup></div>
-      </div>
-       </> 
-
-      ) : (
-             <>
-      <div className={styles.Home}>
-      <h4 className={styles.Stat}>Задание {count+1} из {allword.length}</h4>
-      <img src="/img/Ok.png" alt="Ok.png" className={styles.Ok}/>
-      <h3  onClick= {talk(allword[count].wordEnglish)}>{allword[count].wordEnglish}</h3>
-      <VolumeUpIcon className={styles.Volume} onClick={() => sound ? talk(allword[count].wordEnglish) : null}/>
-      <div><ButtonGroup >
-      {arrRandom?.map((el, index) => 
-        <Button 
           key={index}
           value={el} 
           onClick={(e)=>click(e)}
           >
-           <img className={styles.Img} src={el} alt={el} />
-        </Button>
-      )}
-    </ButtonGroup></div>
-    </div>
-     </> 
-      )
-     
-      )
-   
+             <img className={styles.Img} src={el} alt={el} />
+          </Button>
+        )}
+      </ButtonGroup></div>
+        <Ansew ansew={ansew} />
+      </div>
+       </> 
       ) : (
         <>
         <div className={styles.Home}>
