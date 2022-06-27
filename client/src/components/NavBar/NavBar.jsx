@@ -83,9 +83,9 @@ export default function ButtonAppBar() {
               </div>
             </Link>
           </Typography>
-          <Button onClick={regHandler} color="inherit">{user.name ? user.name : 'Регистрация'}</Button>
-          <Button onClick={logHandler} color="inherit">{user.name ? <>выйти <img className={style.iconsHeder} src="img/headerIcons/logout.png" alt="logout" /></>  : <>войти <img className={style.iconsHeder} src="img/headerIcons/login.png" alt="login" /></>}</Button>
-          <Button onClick={LkHandler} color="inherit">{user.name ? <> Личный кабинет <img className={style.iconsHeder} src="img/headerIcons/lk.png" alt="lk" /></> : null}</Button>
+          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src="img/headerIcons/patient.png" alt="reg"/> <p>Регистрация</p></div>}</Button>
+          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src="img/headerIcons/logout.png" alt="logout" /><p>выйти</p> </div>  : <div> <img className={style.iconsHeder} src="img/headerIcons/login.png" alt="login" /> <p>войти</p></div>}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src="img/headerIcons/lk.png" alt="lk" /> <p>Личный кабинет</p></div> : null}</Button>
         </Toolbar>
       </AppBar>
     </Box>
