@@ -13,9 +13,10 @@ import WordsPage from './components/WordsPage/WordsPage';
 import OneWords from './components/WordsPage/OneWords/OneWords'
 import AllWord from './components/AllWord/AllWord';
 import Lk from './components/Lk/Lk';
-
+import CardOnSound from './components/CardOnSound/CardOnSound'
 import {getUser} from './redux/actions/userAC'
 import TestGame from './components/TestGame/TestGame';
+import SoundGame from './components/SoundGame/SoundGame';
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route path="/card/:id" element={<TestGame />} />
           <Route path="/auth/reg" element={<Reg />} />
           <Route path="/auth/login" element={<Login />} />
+          <Route path='/sound/' element={<CardOnSound />} />  
+          <Route path='/sound/:id' element={<SoundGame />} />  
           <Route path='/lk' element={<Lk />} />
         </Routes>
     </div>

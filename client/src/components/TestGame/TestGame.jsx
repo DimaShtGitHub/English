@@ -20,7 +20,8 @@ export default function TestGame() {
    const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
    const [allword, setAllWord] =useState([])
    const navigate = useNavigate();
-  
+   const [res, setRes] = useState({arrtrue: [], arrfalse:[]})
+
   useEffect(() => {
     if(id === 'random'){
       axios.get(`http://localhost:3001/words/random`)
@@ -53,7 +54,7 @@ export default function TestGame() {
     if(allword.length> 1 && count <= allword.length ) {
     const wordOnBut = allword.map(el => el.wordEnglish)
  const filterArr = wordOnBut.filter(el => el !== allword[count]?.wordEnglish)
- let arrRandom2 = shufle(filterArr.slice(0, 3))
+ let arrRandom2 = shufle(filterArr).slice(0, 3)
  arrRandom2.push(allword[count]?.wordEnglish)
  arrRandom = shufle(arrRandom2)
     }
@@ -63,8 +64,10 @@ const click = (event) => {
 if(event.target.value === allword[count].wordEnglish)  {
   setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue,  allword[count].id]}))
   talk(`Yes, ${allword[count].wordEnglish}`)
+  setRes((prev) => ({...prev, arrtrue: [...res.arrtrue,  allword[count].wordEnglish]}))
 } else {
   setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse,  allword[count].id]}))
+  setRes((prev) => ({...prev, arrfalse: [...res.arrfalse,  allword[count].wordEnglish]}))
   talk('No')
 }}
 
@@ -79,6 +82,8 @@ if(event.target.value === allword[count].wordEnglish)  {
 if (count !== 0 && count === allword.length && user.name) {
   axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
+
+console.log(res)
 
   return (
     <>
@@ -103,16 +108,16 @@ if (count !== 0 && count === allword.length && user.name) {
       <h3 className={styles.Stat}>Игра окончена</h3>
       {stat.arrtrue?.length > 0 ? (
   <>
-   <h3 >Молодец, правильных ответов: {stat.arrtrue.length}</h3>
+   <h3 >Молодец, правильных ответов: {res.arrtrue.length}</h3>
 
-        <div>правильные ответы: {stat.arrtrue.map((el, i)=> {
+        <div>правильные ответы: {res.arrtrue.map((el, i)=> {
           return <Button onClick={() => talk(el)} value={el} key={i}>{el}</Button>
         })}</div></>
 ) : (
   <h3 >Правильных ответов нет</h3>
 )}
 {stat.arrfalse.length > 0 ? (
-   <div>неправильные ответы: {stat.arrfalse.map((el, i) => {
+   <div>неправильные ответы: {res.arrfalse.map((el, i) => {
           return <Button value={el} onClick={() => talk(el)} key={i}>{el}</Button>
         })}</div>
 ):(null)}

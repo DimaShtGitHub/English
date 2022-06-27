@@ -8,8 +8,19 @@ router.get('/', async (req, res) => {
 
 router.get('/random', async (req, res) => {
   
-  const words = await Word.findAll({raw: true}) 
-  
+  const random = Math.floor(Math.random() * 3)
+  let words;
+  if(random == 0) {
+   words = await Word.findAll({order: [['wordRussian', 'DESC']], raw: true})    
+  } else if (random == 1) {
+    words = await Word.findAll({order: [['wordEnglish', 'ASC']], raw: true}) 
+  } else if (random === 2) {
+    words = await Word.findAll({order: [['wordEnglish', 'DESC']], raw: true}) 
+  } else {
+    words = await Word.findAll({order: [['id', 'DESC']], raw: true}) 
+  }
+ 
+
   function shufle(arr) {
     let barr = [...Array(arr.length)].fill('a');
     for(let i = 0; i < barr.length; i++) {
@@ -22,8 +33,10 @@ router.get('/random', async (req, res) => {
       }} 
       return barr
     }
+   
     const total = shufle(words)
-    res.json(total.slice(0,6))
+    
+    res.json(total.slice(10,16))
   })
 
 

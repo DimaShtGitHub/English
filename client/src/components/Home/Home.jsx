@@ -4,7 +4,7 @@ import CardOnHome from '../CardOnHome/CardOnHome'
 export default function Home() {
   return (
     <>
-    <div className={styles.Home}>
+    <div className={styles.Home} >
       <CardOnHome />
       <img src="/img/PonyHome.png" alt="" className={styles.PonyHome}/>
       <img src="/img/PonyHome1.png" alt="" className={styles.PonyHome1}/>
