@@ -4,7 +4,7 @@ const {  Word, Statistic } = require('../db/models')
 
 router.get('/user', async(req, res) => {
   const id = req.session?.user?.id
-  const usersStatistic = await Statistic.findAll({where: {userId: id},include: {model: Word}, raw: true})
+  const usersStatistic = await Statistic.findAll({where: {userId: id}, include: {model: Word}, raw: true})
   res.json(usersStatistic)
 })
 
