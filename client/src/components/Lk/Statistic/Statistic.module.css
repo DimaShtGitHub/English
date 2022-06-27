@@ -5,6 +5,7 @@
   display: flex;
   opacity: .7;
 }
+
 .Card:hover{
  transition: 0.8s;
   opacity: 1;

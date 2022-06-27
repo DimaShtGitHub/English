@@ -24,7 +24,7 @@ export default function CardOnHome() {
   const navigate = useNavigate(); 
   return (
     <>
-    <Container  className={styles.Container}>
+    <Container  className={styles.Container} >
     <Card  className={styles.Card} >
       <CardActionArea className={styles.Area} onClick={()=> navigate('/coloring', {replace: true})}>
         <img className={styles.Img}

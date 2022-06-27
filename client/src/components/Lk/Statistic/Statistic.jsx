@@ -37,7 +37,6 @@ export default function Statistic( { word }) {
         
       </CardActionArea>
     </Card>
-  
     </>
   )
 }
