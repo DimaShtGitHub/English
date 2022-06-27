@@ -29,9 +29,16 @@ export default function AllWord() {
   const findHandler = (event) => {
     event.preventDefault()
     setValue(event.target.value.length)
-    if (value) {
-      setFindWord(allWord.filter((el) => el.wordEnglish.split('').map(el=>el.toLowerCase()).join('').includes(event.target.value.split('').map(el=>el.toLowerCase()).join(''))  
-      || el.wordRussian.split('').map(el=>el.toLowerCase()).join('').includes(event.target.value.split('').map(el=>el.toLowerCase()).join(''))))
+    if (event.target.value.length) {
+      setFindWord(allWord.filter((el) => 
+        (el.wordEnglish.split('').map(el => el.toLowerCase())
+            .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join('')) 
+            ||
+        el.wordRussian.split('').map(el => el.toLowerCase())
+          .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join(''))) 
+          && (el.wordEnglish[0].toLowerCase() === event?.target?.value[0].toLowerCase() || el.wordRussian[0].toLowerCase() === event?.target?.value[0].toLowerCase())
+      ))
+
     } else {
       setFindWord([])
     }
@@ -50,31 +57,44 @@ export default function AllWord() {
         <TextField id="outlined-basic" label="введите слово для поиска" variant="outlined" />
       </Box>
 
-      {findWord.length ?
+      {value ?
 
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableBody>
-            <OneWord word={findWord[0]}/>
-          </TableBody>
-        </Table> 
+        (findWord?.length ?
+          (<TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} style={{ backgroundColor: 'rgb(198, 255, 222)' }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Прослушать</TableCell>
+                  <TableCell align="center">Английский язык</TableCell>
+                  <TableCell align="center">Русский язык</TableCell>
+                  <TableCell align="center">Изображение</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {findWord?.map(el => <OneWord word={el} key={el.id} />)}
+              </TableBody>
+            </Table>
+          </TableContainer>) : (<><div>👉 совпадений не найдено 👈</div><img style={{ height: '60vh', width: '60vh' }} src='/img/Card.png' alt='загрузка' /></>))
 
-        : (value ? <div>🤷‍♂️ такого слова не найдено 🤷‍♂️</div> : null) }
-      
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Прослушать</TableCell>
-              <TableCell align="center">Английский язык</TableCell>
-              <TableCell align="center">Русский язык</TableCell>
-              <TableCell align="center">Изображение</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {allWord?.map(el => <OneWord word={el} key={el.id} />)}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+        :
+        (<TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Прослушать</TableCell>
+                <TableCell align="center">Английский язык</TableCell>
+                <TableCell align="center">Русский язык</TableCell>
+                <TableCell align="center">Изображение</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {allWord?.map(el => <OneWord word={el} key={el.id} />)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        )
+      }
     </>
   )
 }

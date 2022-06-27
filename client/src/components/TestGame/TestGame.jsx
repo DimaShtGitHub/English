@@ -8,15 +8,17 @@ import { unstable_composeClasses } from '@mui/material';
 import {useSelector} from 'react-redux';
 import styles from './TestGame.module.css'
 
-export default function TestGame() {
 
-   const {id} = useParams() 
-   const user = useSelector((state)=>state.user)
-   const [count, setCount] = useState(0)
+export default function TestGame() {
+  console.count('test game')
+  
+  const {id} = useParams() 
+  const user = useSelector((state)=>state.user)
+  const [count, setCount] = useState(0)
+  const sound = useSelector((state) => state.sound)
    //массивы для бэка
    const [stat, setStat] = useState({arrtrue: [], arrfalse:[]})
    const [allword, setAllWord] =useState([])
-   const sound = useSelector((state) => state.sound)
    const navigate = useNavigate();
    const [res, setRes] = useState({arrtrue: [], arrfalse:[]})
 

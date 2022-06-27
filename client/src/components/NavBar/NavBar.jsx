@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -35,6 +36,21 @@ export default function ButtonAppBar() {
   const sound = useSelector((state) => state.sound)
   const dispatch = useDispatch()
 
+
+  useEffect(() => {
+    // localStorage.clear()
+    if ('volume' in localStorage) {
+      if (localStorage.volume === 'on') {
+        dispatch({ type: 'SET_SOUND', payload: true })
+      } else {
+        dispatch({ type: 'SET_SOUND', payload: false })
+      }
+    } else {
+      localStorage.setItem('volume', 'on')
+      dispatch({ type: 'SET_SOUND', payload: true })
+    } 
+   }, [])
+
   const logHandler = (event) => {
     if (user.name) {
       axios.get('http://localhost:3001/auth/logout', {
@@ -42,6 +58,7 @@ export default function ButtonAppBar() {
       })
         .then((response) => {
           dispatch({ type: 'SET_USER', payload: {} })
+          localStorage.clear()
           navigate("/", { replace: true })
         })
     } else {
@@ -61,8 +78,17 @@ export default function ButtonAppBar() {
   //   navigate("/", { replace: true })
   // }
 
+
+  console.log('состояние саунда', sound)
+
   const soundHandler = (event) => {
-    dispatch({ type: 'SET_SOUND', payload: !sound })
+    if (localStorage.volume === 'on') {
+      localStorage.volume = 'off'
+      dispatch({ type: 'SET_SOUND', payload: false })
+    } else {
+      localStorage.volume = 'on'
+      dispatch({ type: 'SET_SOUND', payload: true })
+    }
   }
 
   return (
