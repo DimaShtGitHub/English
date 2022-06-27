@@ -31,10 +31,14 @@ export default function AllWord() {
     setValue(event.target.value.length)
     if (event.target.value.length) {
       setFindWord(allWord.filter((el) => 
-        el.wordEnglish.split('').map(el => el.toLowerCase())
-            .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join('')) ||
+        (el.wordEnglish.split('').map(el => el.toLowerCase())
+            .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join('')) 
+            ||
         el.wordRussian.split('').map(el => el.toLowerCase())
-          .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join('')))) 
+          .join('').includes(event.target.value.split('').map(el => el.toLowerCase()).join(''))) 
+          && (el.wordEnglish[0].toLowerCase() === event?.target?.value[0].toLowerCase() || el.wordRussian[0].toLowerCase() === event?.target?.value[0].toLowerCase())
+      ))
+
     } else {
       setFindWord([])
     }
