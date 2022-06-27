@@ -15,6 +15,17 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import style from './NavBar.module.css'
 
+import a_img from '../../assets/headerIcons/a.png'
+import login_img from '../../assets/headerIcons/login.png'
+import logout_img from '../../assets/headerIcons/logout.png'
+import game_img from '../../assets/headerIcons/game-console.png'
+import colored_img from '../../assets/headerIcons/colored-pencils.png'
+import words_img from '../../assets/headerIcons/scrabble.png'
+import dictonary_img from '../../assets/headerIcons/international-childrens-day.png'
+import logo_img from '../../assets/headerIcons/free-icon-learning-4615290.png'
+import reg_img from '../../assets/headerIcons/patient.png'
+import lk_img from '../../assets/headerIcons/lk.png'
+
 export default function ButtonAppBar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
@@ -58,15 +69,16 @@ export default function ButtonAppBar() {
           <PopupState variant="popover" popupId="demo-popup-menu" >
             {(popupState) => (
               <React.Fragment >
-                <Button className={style.Btn} variant="contained"  {...bindTrigger(popupState)} sx={{backgroundColor: '#27e3c2', border: '2px solid black', fontFamily: 'OpenDyslexic'}}>
+                <Button  variant="contained"  {...bindTrigger(popupState)} sx={{backgroundColor: '#27e3c2', border: '2px solid black' }}>
                 <h5>Играть</h5>
-                <img className={style.iconsHeder} src="img/headerIcons/game-console.png" alt="game" />
+                <img className={style.iconsHeder} src={game_img}  alt="game img" />               
                 </Button>
                 <Menu {...bindMenu(popupState)}>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring" >Раскраска <img className={style.iconsHeder} src="img/headerIcons/colored-pencils.png" alt="colored-pencils" /></Link></MenuItem>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Буква <img className={style.iconsHeder} src="img/headerIcons/a.png" alt="letter" /></Link></MenuItem>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Слово <img className={style.iconsHeder} src="img/headerIcons/scrabble.png" alt="words" /></Link></MenuItem>
-                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Словарь <img className={style.iconsHeder} src="img/headerIcons/international-childrens-day.png" alt="dictonary" /></Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring" >Раскраска <img className={style.iconsHeder} src={colored_img} alt="colored-pencils" /></Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Буква <img className={style.iconsHeder} src={a_img} alt="letter" /></Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Слово <img className={style.iconsHeder} src={words_img} alt="words" /></Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Словарь <img className={style.iconsHeder} src={dictonary_img} alt="dictonary" /></Link></MenuItem>
+
                 </Menu>
               </React.Fragment>
             )}
@@ -77,15 +89,15 @@ export default function ButtonAppBar() {
               <div className='logo'>
                 <h3>
                 English
-                <img className={style.mainImg} style={{width: 80}} src="img/headerIcons/free-icon-learning-4615290.png" alt="aa" />
+                <img className={style.mainImg} style={{width: 80}} src={logo_img} alt="aa" />
                 Young
                 </h3>
               </div>
             </Link>
           </Typography>
-          <Button onClick={regHandler} color="inherit">{user.name ? user.name : 'Регистрация'}</Button>
-          <Button onClick={logHandler} color="inherit">{user.name ? <>выйти <img className={style.iconsHeder} src="img/headerIcons/logout.png" alt="logout" /></>  : <>войти <img className={style.iconsHeder} src="img/headerIcons/login.png" alt="login" /></>}</Button>
-          <Button onClick={LkHandler} color="inherit">{user.name ? <> Личный кабинет <img className={style.iconsHeder} src="img/headerIcons/lk.png" alt="lk" /></> : null}</Button>
+          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p>Регистрация</p></div>}</Button>
+          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p>войти</p></div>}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p>Личный кабинет</p></div> : null}</Button>
         </Toolbar>
       </AppBar>
     </Box>
