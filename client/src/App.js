@@ -26,9 +26,8 @@ function App() {
 
   useEffect(() => {
     dispatch(getUser())
-   }, [])
+  }, [])
 
-  
   return (
     <div className="App">
         <NavBar />

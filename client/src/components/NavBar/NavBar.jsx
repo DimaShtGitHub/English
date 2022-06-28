@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -22,15 +23,33 @@ import game_img from '../../assets/headerIcons/game-console.png'
 import colored_img from '../../assets/headerIcons/colored-pencils.png'
 import words_img from '../../assets/headerIcons/scrabble.png'
 import dictonary_img from '../../assets/headerIcons/international-childrens-day.png'
-import logo_img from '../../assets/headerIcons/free-icon-learning-4615290.png'
+import logo_img from '../../assets/headerIcons/youngenlish.png'
 import reg_img from '../../assets/headerIcons/patient.png'
 import lk_img from '../../assets/headerIcons/lk.png'
+import sound_img from '../../assets/headerIcons/song.png'
+
+
 
 export default function ButtonAppBar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user)
   const sound = useSelector((state) => state.sound)
   const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    // localStorage.clear()
+    if ('volume' in localStorage) {
+      if (localStorage.volume === 'on') {
+        dispatch({ type: 'SET_SOUND', payload: true })
+      } else {
+        dispatch({ type: 'SET_SOUND', payload: false })
+      }
+    } else {
+      localStorage.setItem('volume', 'on')
+      dispatch({ type: 'SET_SOUND', payload: true })
+    } 
+   }, [])
 
   const logHandler = (event) => {
     if (user.name) {
@@ -39,6 +58,7 @@ export default function ButtonAppBar() {
       })
         .then((response) => {
           dispatch({ type: 'SET_USER', payload: {} })
+          localStorage.clear()
           navigate("/", { replace: true })
         })
     } else {
@@ -59,7 +79,13 @@ export default function ButtonAppBar() {
   // }
 
   const soundHandler = (event) => {
-    dispatch({ type: 'SET_SOUND', payload: !sound })
+    if (localStorage.volume === 'on') {
+      localStorage.volume = 'off'
+      dispatch({ type: 'SET_SOUND', payload: false })
+    } else {
+      localStorage.volume = 'on'
+      dispatch({ type: 'SET_SOUND', payload: true })
+    }
   }
 
   return (
@@ -77,6 +103,7 @@ export default function ButtonAppBar() {
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/coloring" >Раскраска <img className={style.iconsHeder} src={colored_img} alt="colored-pencils" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/words">Буква <img className={style.iconsHeder} src={a_img} alt="letter" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/card">Слово <img className={style.iconsHeder} src={words_img} alt="words" /></Link></MenuItem>
+                  <MenuItem onClick={popupState.close}><Link className="menu-link" to="/sound">Звуки <img className={style.iconsHeder} src={sound_img} alt="sound" /></Link></MenuItem>
                   <MenuItem onClick={popupState.close}><Link className="menu-link" to="/dictionary">Словарь <img className={style.iconsHeder} src={dictonary_img} alt="dictonary" /></Link></MenuItem>
 
                 </Menu>
@@ -87,17 +114,15 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link className="logo-link" to="/">
               <div className='logo'>
-                <h3>
-                English
-                <img className={style.mainImg} style={{width: 80}} src={logo_img} alt="aa" />
-                Young
-                </h3>
+                
+                <img className={style.mainImg} src={logo_img} alt="logo" />
+               
               </div>
             </Link>
           </Typography>
-          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p>Регистрация</p></div>}</Button>
-          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p>войти</p></div>}</Button>
-          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p>Личный кабинет</p></div> : null}</Button>
+          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p className={style.Menu}>Регистрация</p></div>}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p className={style.Menu}>Личный кабинет</p></div> : null}</Button>
+          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p className={style.Menu}>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p className={style.Menu}>войти</p></div>}</Button>
         </Toolbar>
       </AppBar>
     </Box>
