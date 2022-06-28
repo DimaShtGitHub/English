@@ -44,9 +44,8 @@ router.post('/', async (req, res) => {
       if(count <= 2) {
         await Statistic.destroy({where: {userId: id, wordId: truearr[i]}})
       } else {
-        console.log('-2 из false', truearr[i])
           oneTrueWord.count = count - 2
-        await oneTrueWord.save()
+          await oneTrueWord.save()
       }
     }else if(trueWordId.indexOf(truearr[i]) === -1 && wordId.indexOf(truearr[i]) === -1) {
       await TrueStatistic.create({userId: id, wordId: truearr[i], count: 1})
