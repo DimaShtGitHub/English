@@ -63,7 +63,7 @@ export default function OneWords() {
     }
   }
   
-  console.log(count, words.length)
+
   if (count !== 0 && count === words.length && user.name) {
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }

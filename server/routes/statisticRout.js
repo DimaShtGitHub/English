@@ -1,31 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const {  Word, Statistic, TrueStatistic } = require('../db/models')
+const { Op } = require("sequelize");
 
-router.get('/user', async(req, res) => {
-  const id = req.session?.user?.id
-  const usersStatistic = await Statistic.findAll({where: {userId: id}, include: {model: Word}, raw: true})
-  res.json(usersStatistic)
-})
+
+// router.get('/user', async(req, res) => {
+//   const id = req.session?.user?.id
+//   const usersStatistic = await Statistic.findAll({where: {userId: id}, include: {model: Word}, raw: true})
+//   res.json(usersStatistic)
+// })
 
 
 router.post('/', async (req, res) => {
-  console.log(111, 'пришел массив')
   try {
   const truearr = req.body.stat.arrtrue
   const falsearr = req.body.stat.arrfalse
-  console.log(truearr)
   console.log(falsearr)
+  console.log(truearr)
   const id = req.session?.user?.id
   const allWordId = await Statistic.findAll({where: {userId: id}, raw: true})
   const allTrieWordId = await TrueStatistic.findAll({where: {userId: id}, raw: true})
   //создаем массив только wordId [3, 5, 8]
   const wordId = allWordId.map(el => el.wordId)
   const trueWordId = allTrieWordId.map(el => el.wordId)
+  console.log(wordId, 'false')
+  console.log(trueWordId, 'true')
 
   //проходим по массиву и смотрим есть ли в нем значения из массива false
   for(i = 0; i < falsearr?.length; i++) {
-    if(wordId.indexOf(falsearr[i]) === -1) {
+    if(wordId.indexOf(falsearr[i]) === -1 && trueWordId.indexOf(falsearr[i]) === -1) {
       console.log('create', falsearr[i])
       await Statistic.create({userId: id, wordId: falsearr[i], count: 1})
     } else if(wordId.indexOf(falsearr[i]) !== -1){
@@ -38,7 +41,7 @@ router.post('/', async (req, res) => {
       let oneFalseWord = await TrueStatistic.findOne({where: {userId: id, wordId: falsearr[i]}})
       let count = oneFalseWord.count
       if(count <= 2 ){
-        await TrueStatistic.destroy({where: {userId: id, wordId: truearr[i]}})
+        await TrueStatistic.destroy({where: {userId: id, wordId: falsearr[i]}})
       } else {
         oneFalseWord.count = count-2
       await oneFalseWord.save() 
@@ -66,7 +69,7 @@ router.post('/', async (req, res) => {
       console.log('++ count in true', truearr[i])
       let trueWord = await TrueStatistic.findOne({where: {userId: id, wordId: truearr[i]}})
       trueWord.count++
-      trueWord.save()
+      await trueWord.save()
     }
    }
 
@@ -78,8 +81,14 @@ router.post('/', async (req, res) => {
 
 router.get('/user', async(req, res) => {
   const id = req.session?.user?.id
-  const usersStatistic = await Statistic.findAll({where: {userId: id},include: {model: Word}, raw: true})
-  res.json(usersStatistic)
+  const usersStatisticFalse = await Statistic.findAll({where: {userId: id, count: {[Op.gte]: 2}},include: {model: Word}, raw: true})
+  res.json(usersStatisticFalse)
 })
   
+router.get('/usertrue', async(req, res) => {
+  const id = req.session?.user?.id
+  const usersStatisticTrue = await TrueStatistic.findAll({where: {userId: id, count: {[Op.gte]: 3}},include: {model: Word}, raw: true})
+  res.json(usersStatisticTrue)
+})
+
 module.exports = router;
