@@ -120,7 +120,6 @@ setARandom(arrRandom)
 
 if (statusStat === 0 && count !== 0 && count === allword.length && user.name) {
   setStatusStat(1)
-  console.log(stat)
  axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
 

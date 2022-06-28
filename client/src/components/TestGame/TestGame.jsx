@@ -4,13 +4,11 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import React, { useEffect, useState } from 'react'
 import style from './TestGame.module.css'
 import { useParams, useNavigate } from 'react-router-dom';
-import { unstable_composeClasses } from '@mui/material';
 import {useSelector} from 'react-redux';
 import styles from './TestGame.module.css'
 
 
 export default function TestGame() {
-  console.count('test game')
   
   const {id} = useParams() 
   const user = useSelector((state)=>state.user)
@@ -82,8 +80,6 @@ if(event.target.value === allword[count].wordEnglish)  {
 if (count !== 0 && count === allword.length && user.name) {
   axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
-
-console.log(res)
 
   return (
     <>
