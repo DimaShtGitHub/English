@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import {useSelector} from 'react-redux';
@@ -153,4 +153,5 @@ if (count !== 0 && count === allword.length && user.name) {
     
   )
 }
+
 
