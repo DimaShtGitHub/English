@@ -6,6 +6,7 @@ import style from './TestGame.module.css'
 import { useParams, useNavigate } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import styles from './TestGame.module.css'
+import Ansew from '../SoundGame/Ansew/Ansew';
 
 
 export default function TestGame() {
@@ -19,6 +20,10 @@ export default function TestGame() {
    const [allword, setAllWord] =useState([])
    const navigate = useNavigate();
    const [res, setRes] = useState({arrtrue: [], arrfalse:[]})
+   const [arRandom, setArRandom] = useState([])
+   const [ansew, setAnsew] = useState(0)
+   const [statusStat, setStatusStat] = useState(0)
+
 
   useEffect(() => {
     if(id === 'random'){
@@ -34,6 +39,18 @@ export default function TestGame() {
       }) 
     }
   }, [])
+
+  useEffect(() => {
+    let arrRandom;
+    if(allword.length > 1 && count === 0) {
+    const wordOnBut = allword.map(el => el.wordEnglish)
+ const filterArr = wordOnBut.filter(el => el !== allword[count]?.wordEnglish)
+ let arrRandom2 = shufle(filterArr).slice(0, 3)
+ arrRandom2.push(allword[count]?.wordEnglish)
+ arrRandom = shufle(arrRandom2)
+ setArRandom(arrRandom)
+    }
+  }, [allword])
   
   function shufle(arr) {
     let barr = [...Array(arr.length)].fill('a');
@@ -48,26 +65,41 @@ export default function TestGame() {
     return barr
   }
 
-  let arrRandom;
-    if(allword.length> 1 && count <= allword.length ) {
-    const wordOnBut = allword.map(el => el.wordEnglish)
- const filterArr = wordOnBut.filter(el => el !== allword[count]?.wordEnglish)
- let arrRandom2 = shufle(filterArr).slice(0, 3)
- arrRandom2.push(allword[count]?.wordEnglish)
- arrRandom = shufle(arrRandom2)
-    }
+//   let arrRandom;
+//     if(allword.length> 1 && count <= allword.length ) {
+//     const wordOnBut = allword.map(el => el.wordEnglish)
+//  const filterArr = wordOnBut.filter(el => el !== allword[count]?.wordEnglish)
+//  let arrRandom2 = shufle(filterArr).slice(0, 3)
+//  arrRandom2.push(allword[count]?.wordEnglish)
+//  arrRandom = shufle(arrRandom2)
+//     }
 
 const click = (event) => {
   setCount(count+1)
+  let arrRandom;
+    if(allword.length > 1 && count < allword.length ) {
+const wordOnBut = allword.map(el => el.wordEnglish)
+ const filterArr = wordOnBut.filter(el => el !== allword[count+1]?.wordEnglish)
+ let arrRandom2 = shufle(filterArr).slice(0, 3)
+ arrRandom2.push(allword[count+1]?.wordEnglish)
+ arrRandom = shufle(arrRandom2)
+ setArRandom(arrRandom)
+    }
 if(event.target.value === allword[count].wordEnglish)  {
   setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue,  allword[count].id]}))
   talk(`Yes, ${allword[count].wordEnglish}`)
   setRes((prev) => ({...prev, arrtrue: [...res.arrtrue,  allword[count].wordEnglish]}))
+  setAnsew(1)
 } else {
   setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse,  allword[count].id]}))
   setRes((prev) => ({...prev, arrfalse: [...res.arrfalse,  allword[count].wordEnglish]}))
   talk('No')
-}}
+  setAnsew(2)
+}
+setTimeout(()=> {
+  setAnsew(0)
+}, 700)
+}
 
   const talk = (str) => {
     if (sound) {
@@ -77,7 +109,9 @@ if(event.target.value === allword[count].wordEnglish)  {
     }
 }
 
-if (count !== 0 && count === allword.length && user.name) {
+if (count !== 0 && count === allword.length && user.name && statusStat === 0) {
+  console.count(111)
+  setStatusStat(1)
   axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
 
@@ -86,16 +120,19 @@ if (count !== 0 && count === allword.length && user.name) {
     { allword[count] ? (
       <>
       <div className={styles.Home}>
+      <h4 className={styles.Stat1}>Задание {count+1} из {allword.length}</h4>
       <img className={style.Img} src={allword[count].img} alt='pic'/>
       <div><ButtonGroup className={style.Btn}>
-              {arrRandom?.map((el, index) => 
+              {arRandom?.map((el, index) => 
                 <Button 
                   key={index}
                   value={el} 
                   onClick={(e)=>click(e)}>{el}
                 </Button>
               )}
-            </ButtonGroup></div>
+            </ButtonGroup>
+            <Ansew ansew={ansew} />
+            </div>
       </div>
       </>
     ):(

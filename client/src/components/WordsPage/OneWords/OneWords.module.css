@@ -10,7 +10,7 @@
 
 .Img {
   height: 30vh ;
-  margin-top: 15%; 
+  margin-top: 3%; 
 }
 
 .Word {
@@ -37,4 +37,7 @@
   padding-top: 20%;
 }
 
-
+.Stat1 {
+  position: relative;
+  padding-top: 5%;
+}

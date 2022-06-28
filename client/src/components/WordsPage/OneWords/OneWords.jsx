@@ -82,6 +82,7 @@ export default function OneWords() {
       {words[count] ? 
       (<>
       <div className={styles.Home}>
+      <h4 className={styles.Stat1}>Задание {count+1} из {words.length}</h4>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
