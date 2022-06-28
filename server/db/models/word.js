@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.Topic, {through: 'GameCards', foreignKey: 'wordId'}),
       this.hasMany(models.InsertLetter,  { foreignKey: 'wordId'}),
-      this.hasOne(models.Statistic,  { foreignKey: 'wordId'})
+      this.hasOne(models.Statistic,  { foreignKey: 'wordId'}),
+      this.hasOne(models.TrueStatistic,  { foreignKey: 'wordId'})
     }
   }
   Word.init({

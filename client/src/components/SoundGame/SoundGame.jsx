@@ -10,7 +10,7 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import Ansew from './Ansew/Ansew';
 
 export default function SoundGame() {
-console.count('SoundGame')
+
 
   const {id} = useParams() 
    const user = useSelector((state)=>state.user)
@@ -23,6 +23,9 @@ console.count('SoundGame')
    const [res, setRes] = useState({arrtrue: [], arrfalse:[]})
    const [ansew, setAnsew] = useState(0)
    const [val, setValue] = useState(true)
+  const [aRandom, setARandom] = useState([])
+  const [statusStat, setStatusStat] = useState(0)
+
 
   useEffect(() => {
     if(id === 'random'){
@@ -38,6 +41,20 @@ console.count('SoundGame')
       }) 
     }
   }, [])
+  
+  useEffect(() => {
+ let arrRandom;
+  if(allword?.length >1 && count === 0) {
+  const wordOnBut = allword.map(el => el.img)
+const filterArr = wordOnBut.filter(el => el !== allword[count]?.img)
+let arrRandom2 = shufle(filterArr).slice(0, 2)
+arrRandom2.push(allword[count]?.img)
+arrRandom = shufle(arrRandom2)
+ setARandom(arrRandom)
+  }
+  }, [allword])
+ 
+ 
 
 
   function shufle(arr) {
@@ -53,14 +70,6 @@ console.count('SoundGame')
     return barr
   }
 
-  let arrRandom;
-  if(allword.length> 1 && count <= allword.length ) {
-  const wordOnBut = allword.map(el => el.img)
-const filterArr = wordOnBut.filter(el => el !== allword[count]?.img)
-let arrRandom2 = shufle(filterArr).slice(0, 2)
-arrRandom2.push(allword[count]?.img)
-arrRandom = shufle(arrRandom2)
-  }
 
 
   const talk = (str) => {
@@ -75,7 +84,17 @@ arrRandom = shufle(arrRandom2)
 
 
 const click = (event) => {
-  setCount(count+1)
+ 
+  let arrRandom;
+  if(allword.length> 1 && count <= allword.length ) {
+  const wordOnBut = allword.map(el => el.img)
+  const filterArr = wordOnBut.filter(el => el !== allword[count+1]?.img)
+let arrRandom2 = shufle(filterArr).slice(0, 2)
+arrRandom2.push(allword[count+1]?.img)
+arrRandom = shufle(arrRandom2)
+setARandom(arrRandom)
+ setCount(count+1)
+  }
   if(event.target.value === allword[count].img || event.target.parentNode.value === allword[count].img )  {
     setStat((prev) => ({...prev, arrtrue: [...stat.arrtrue,  allword[count].id]}))
     setRes((prev) => ({...prev, arrtrue: [...res.arrtrue,  allword[count].wordEnglish]}))
@@ -83,7 +102,7 @@ const click = (event) => {
   setTimeout(()=> {
   setAnsew(0)
   setValue(true)
- }, 700)
+ }, 500)
  setValue(false)
   } else {
     setStat((prev) => ({...prev, arrfalse: [...stat.arrfalse,  allword[count].id]}))
@@ -92,15 +111,18 @@ const click = (event) => {
     setTimeout(()=> {
       setAnsew(0)
       setValue(true)
-       }, 700)
+       }, 500)
        setValue(false)
   }
 }
 
-if (count !== 0 && count === allword.length && user.name) {
+
+
+if (statusStat === 0 && count !== 0 && count === allword.length && user.name) {
+  setStatusStat(1)
+  console.log(stat)
  axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
-
 
 
   return (
@@ -112,7 +134,7 @@ if (count !== 0 && count === allword.length && user.name) {
        <h3   onClick= {talk(allword[count].wordEnglish)}>{allword[count].wordEnglish}</h3>
         <VolumeUpIcon className={styles.Volume} onClick={() => sound ? talk(allword[count].wordEnglish) : null}/>
         <div><ButtonGroup >
-        {arrRandom?.map((el, index) => 
+        {aRandom?.map((el, index) => 
           <Button 
           key={index}
           value={el} 
