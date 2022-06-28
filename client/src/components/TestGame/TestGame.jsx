@@ -119,6 +119,13 @@ if (count !== 0 && count === allword.length && user.name) {
 ):(null)}
       <div>
      <Button variant="text" onClick={() => {navigate("/card", { replace: true })}} type="submit">Вернуться к выбору темы</Button>
+     {user.name ? (null):(
+            <>
+            <h5> 
+             <span color='green' onClick={() => {navigate("/auth/reg", { replace: true })}}>Зарегестрируйся </span>  или 
+             <span onClick={() => {navigate("/auth/login", { replace: true })}}> войди</span> , чтобы сохранить результаты игры</h5>
+            </>
+          )}
          </div></div>
       </>
     )}
