@@ -96,7 +96,7 @@ export default function ButtonAppBar() {
             {(popupState) => (
               <React.Fragment >
                 <Button  variant="contained"  {...bindTrigger(popupState)} sx={{backgroundColor: '#27e3c2', border: '2px solid black' }}>
-                <h5>Играть</h5>
+                <h5 className={style.gameSelect}>Играть</h5>
                 <img className={style.iconsHeder} src={game_img}  alt="game img" />               
                 </Button>
                 <Menu {...bindMenu(popupState)}>
