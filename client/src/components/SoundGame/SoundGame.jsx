@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import {useSelector} from 'react-redux';
@@ -120,7 +120,6 @@ setARandom(arrRandom)
 
 if (statusStat === 0 && count !== 0 && count === allword.length && user.name) {
   setStatusStat(1)
-  console.log(stat)
  axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
 
@@ -168,7 +167,15 @@ if (statusStat === 0 && count !== 0 && count === allword.length && user.name) {
  ):(null)}
        <div>
       <Button variant="text" onClick={() => {navigate("/sound", { replace: true })}} type="submit">Вернуться к выбору темы</Button>
-          </div></div>
+          </div>
+          {user.name ? (null):(
+            <>
+            <h5> 
+             <span color='green' onClick={() => {navigate("/auth/reg", { replace: true })}}>Зарегестрируйся </span>  или 
+             <span onClick={() => {navigate("/auth/login", { replace: true })}}> войди</span> , чтобы сохранить результаты игры</h5>
+            </>
+          )}
+          </div>
        </>
         )}
         </>
