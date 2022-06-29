@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -35,6 +36,21 @@ export default function ButtonAppBar() {
   const sound = useSelector((state) => state.sound)
   const dispatch = useDispatch()
 
+
+  useEffect(() => {
+    // localStorage.clear()
+    if ('volume' in localStorage) {
+      if (localStorage.volume === 'on') {
+        dispatch({ type: 'SET_SOUND', payload: true })
+      } else {
+        dispatch({ type: 'SET_SOUND', payload: false })
+      }
+    } else {
+      localStorage.setItem('volume', 'on')
+      dispatch({ type: 'SET_SOUND', payload: true })
+    } 
+   }, [])
+
   const logHandler = (event) => {
     if (user.name) {
       axios.get('http://localhost:3001/auth/logout', {
@@ -42,6 +58,7 @@ export default function ButtonAppBar() {
       })
         .then((response) => {
           dispatch({ type: 'SET_USER', payload: {} })
+          localStorage.clear()
           navigate("/", { replace: true })
         })
     } else {
@@ -62,7 +79,13 @@ export default function ButtonAppBar() {
   // }
 
   const soundHandler = (event) => {
-    dispatch({ type: 'SET_SOUND', payload: !sound })
+    if (localStorage.volume === 'on') {
+      localStorage.volume = 'off'
+      dispatch({ type: 'SET_SOUND', payload: false })
+    } else {
+      localStorage.volume = 'on'
+      dispatch({ type: 'SET_SOUND', payload: true })
+    }
   }
 
   return (
@@ -73,7 +96,7 @@ export default function ButtonAppBar() {
             {(popupState) => (
               <React.Fragment >
                 <Button  variant="contained"  {...bindTrigger(popupState)} sx={{backgroundColor: '#27e3c2', border: '2px solid black' }}>
-                <h5>Играть</h5>
+                <h5 className={style.gameSelect}>Играть</h5>
                 <img className={style.iconsHeder} src={game_img}  alt="game img" />               
                 </Button>
                 <Menu {...bindMenu(popupState)}>
@@ -97,9 +120,9 @@ export default function ButtonAppBar() {
               </div>
             </Link>
           </Typography>
-          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p>Регистрация</p></div>}</Button>
-          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p>Личный кабинет</p></div> : null}</Button>
-          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p>войти</p></div>}</Button>
+          <Button onClick={regHandler} color="inherit">{user.name ? user.name : <div> <img className={style.iconsHeder} src={reg_img} alt="reg"/> <p className={style.Menu}>Регистрация</p></div>}</Button>
+          <Button onClick={LkHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={lk_img} alt="lk" /> <p className={style.Menu}>Личный кабинет</p></div> : null}</Button>
+          <Button onClick={logHandler} color="inherit">{user.name ? <div> <img className={style.iconsHeder} src={logout_img} alt="logout" /><p className={style.Menu}>выйти</p> </div>  : <div> <img className={style.iconsHeder} src={login_img} alt="login" /> <p className={style.Menu}>войти</p></div>}</Button>
         </Toolbar>
       </AppBar>
     </Box>

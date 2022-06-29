@@ -63,7 +63,6 @@ export default function OneWords() {
     }
   }
   
-  console.log(count, words.length)
   if (count !== 0 && count === words.length && user.name) {
     axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
   }
@@ -82,14 +81,16 @@ export default function OneWords() {
       {words[count] ? 
       (<>
       <div className={styles.Home}>
+      <h4 className={styles.Stat1}>Задание {count+1} из {words.length}</h4>
       <img className={styles.Img} src={words[count]['Word.img']} alt="" />
       <div className={styles.Word}>{words[count].text.split('').map(el => el.toUpperCase()).join('')}</div>
-      {checkAnswer ? <div>попробуй еще разок</div> : null}
        <ButtonGroup className={styles.Btn} variant="outlined" size="small" aria-label="outlined button group">
         {words[count]?.option.split('').map((el, i) => {
-        return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
+          return <Button onClick={pushHandler} value={el} key={i}>{el}</Button>
         })}
-      </ButtonGroup></div>
+      </ButtonGroup>
+        {checkAnswer ? <div>попробуй еще разок</div> : null}
+      </div>
       </>)
        : (count ? (<>
         <div className={styles.Home}>
@@ -113,6 +114,13 @@ export default function OneWords() {
         <div>
               <Button variant="text" onClick={() => {navigate("/words", { replace: true })}} type="submit">Вернуться к выбору темы</Button>
               </div>
+              {user.name ? (null):(
+            <>
+            <h5> 
+             <span color='green' onClick={() => {navigate("/auth/reg", { replace: true })}}>Зарегестрируйся </span>  или 
+             <span onClick={() => {navigate("/auth/login", { replace: true })}}> войди</span> , чтобы сохранить результаты игры</h5>
+            </>
+          )}
         </div>
         </>)
          : null)}
