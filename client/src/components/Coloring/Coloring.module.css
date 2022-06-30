@@ -1,0 +1,44 @@
+.Home{
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616609731_1-p-letnii-fon-dlya-prezentatsii-1.jpg);
+  background-position: center;
+  min-height: 100vh;
+  -moz-background-size: 100%; 
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  margin-top: 0px;
+  /* opacity: 0.5; */
+}
+
+.Container {
+  display: flex !important;
+  justify-content: space-around !important;
+  flex-wrap: wrap !important;
+}
+
+
+.Pic {
+  height: 65vh;
+}
+
+.Col {
+  height: 65vh;
+}
+
+.End {
+  width: 180px;
+}
+
+.End:hover {
+  width: 200px;
+}
+
+.Restart:hover {
+  color: purple;
+  font-size: 20px;
+}
+
+.Fonts {
+  font-family: monaco;
+}
+
+

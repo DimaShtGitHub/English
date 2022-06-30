@@ -65,13 +65,13 @@ export default function Reg() {
     >
       <div className={styles.cont}>
       <div>
-        <TextField onChange={inputsHandler} name="name" label="Введите логин:" id="outlined-size-normal" pattern="[A-Za-z]\w+" placeholder="Заполните поле на английском языке" />
+        <TextField onChange={inputsHandler} name="name" label="Введите логин:" id="outlined-size-normal" pattern="[A-Za-z]\w+" minLength="2" placeholder="Заполните поле на английском языке" />
      </div>
      <div>
-        <TextField onChange={inputsHandler} name="email" label="Введите Email:" id="outlined-size-normal" pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$" placeholder="Пример: aa@mail.ru" />
+        <TextField onChange={inputsHandler} name="email" type="email" label="Введите Email:" id="outlined-size-normal" pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,}$" placeholder="Пример: aa@mail.ru" />
       </div> 
       <div>
-        <TextField onChange={inputsHandler} name="password" type="password" label="Введите пароль:" id="outlined-size-normal" placeholder="Длина должна быть больше двух символов"/>
+        <TextField onChange={inputsHandler} name="password" type="password" label="Введите пароль:" id="outlined-size-normal" minLength="2" placeholder="Длина должна быть больше двух символов"/>
       </div>
       {err.message ? <div className="err-message">{err.message}</div> : null}
       <Button variant="text" type="submit">Зарегистрироваться</Button>
@@ -81,3 +81,5 @@ export default function Reg() {
 </>
   )
 }
+
+

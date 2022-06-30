@@ -110,7 +110,6 @@ setTimeout(()=> {
 }
 
 if (count !== 0 && count === allword.length && user.name && statusStat === 0) {
-  console.count(111)
   setStatusStat(1)
   axios.post('http://localhost:3001/statistic', {stat}, {withCredentials: true})
 }
